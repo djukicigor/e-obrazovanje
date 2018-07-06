@@ -1,3 +1,22 @@
+CREATE TABLE security_user (
+    ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username varchar(255),
+    password varchar(255),
+    first_name varchar(255),
+    last_name varchar(255)
+);
+
+CREATE TABLE security_authority (
+    ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255)
+);
+
+CREATE TABLE security_user_authority (
+    ID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id int,
+    authority_id int
+);
+
 -- insert users
 -- password is 12345 (bcrypt encoded) 
 insert into security_user (username, password, first_name, last_name) values 
