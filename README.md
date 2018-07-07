@@ -10,5 +10,6 @@ Projekat za e-obrazovanje
 * start spring project
 * open `/sql/db-init.sql` in MySQL workbench
 * execute `db-init.sql` file
+* open `src/main/resources/application.properties` and comment out line 8
 * test login with 'admin/12345'
 * comment TestData.java from 32 to 68 line
