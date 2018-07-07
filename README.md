@@ -3,6 +3,7 @@ Projekat za e-obrazovanje
 
 #### Setting up project
 * git clone `https://github.com/web-man/e-obrazovanje.git`
+* run `create database eEducation` MySQL workbench and select database
 * open `/sql/db-init.sql` in MySQL workbench
 * execute `db-init.sql` file
 * enter `cd client` in terminal
