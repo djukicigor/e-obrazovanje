@@ -62,7 +62,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import { Http, Response, RequestOptions, 
+// import { Http, Response, RequestOptions,
 //          Headers, URLSearchParams } from '@angular/http';
 var AddRecordComponent = (function () {
     function AddRecordComponent(http) {
@@ -82,7 +82,7 @@ var AddRecordComponent = (function () {
     };
     AddRecordComponent.prototype.loadData = function () {
         var _this = this;
-        var sub = this.http.get('/api/authors')
+        var sub = this.http.get('http://localhost:8080/api/authors')
             .subscribe(function (authors) { _this.authors = authors; });
     };
     AddRecordComponent.prototype.addRecord = function () {
@@ -117,7 +117,7 @@ var AddRecordComponent = (function () {
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\r\n\t<div class=\"container\">\r\n\t\t<div class=\"navbar-header\">\r\n\t\t\t<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n\t\t\t\t<span class=\"sr-only\">Toggle navigation</span>\r\n\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t</button>\r\n\t\t\t<a class=\"navbar-brand\" href=\"#\">RecordStore</a>\r\n\t\t</div>\r\n\t\t<div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n\t\t\t<ul class=\"nav navbar-nav\">\r\n\t\t\t\t<li class=\"active\"><a href=\"#\">Home</a></li>\r\n\t\t\t\t<li><a href=\"#about\">About</a></li>\r\n\t\t\t\t<li><a href=\"#contact\">Contact</a></li>\r\n\t\t\t</ul>\r\n\t\t\t<ul class=\"nav navbar-nav pull-right\">\r\n\t\t\t\t<li *ngIf=\"isLoggedIn()\"><a (click)=\"logout()\">Logout</a></li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n</nav>\r\n<div class=\"container\" role=\"main\">\r\n\t\r\n\t<div class=\"jumbotron\">\r\n\t\t<h1>RecordStore</h1>\r\n\t\t<p>An example of Angular application styled with Bootstrap.</p>\r\n\t</div>\r\n\r\n\t<router-outlet></router-outlet>\r\n\r\n</div>"
+module.exports = "<nav class=\"navbar navbar-inverse navbar-fixed-top\">\r\n\t<div class=\"container\">\r\n\t\t<div class=\"navbar-header\">\r\n\t\t\t<button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\r\n\t\t\t\t<span class=\"sr-only\">Toggle navigation</span>\r\n\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t\t<span class=\"icon-bar\"></span>\r\n\t\t\t</button>\r\n\t\t\t<a class=\"navbar-brand\" href=\"#\">eEducation</a>\r\n\t\t</div>\r\n\t\t<div id=\"navbar\" class=\"navbar-collapse collapse\">\r\n\t\t\t<ul class=\"nav navbar-nav\">\r\n\t\t\t\t<li class=\"active\"><a href=\"#\">Home</a></li>\r\n\t\t\t\t<li *ngIf=\"isLoggedIn()\"><a href=\"#subjects\">Subjects</a></li>\r\n\t\t\t</ul>\r\n\t\t\t<ul class=\"nav navbar-nav pull-right\">\r\n\t\t\t\t<li *ngIf=\"isLoggedIn()\"><a (click)=\"logout()\">Logout</a></li>\r\n\t\t\t</ul>\r\n\t\t</div>\r\n\t</div>\r\n</nav>\r\n<div class=\"container\" role=\"main\">\r\n\r\n\t<div class=\"jumbotron\">\r\n\t\t<h1>eEducation</h1>\r\n\t</div>\r\n\r\n\t<router-outlet></router-outlet>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -585,7 +585,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-// import { Response, RequestOptions, 
+// import { Response, RequestOptions,
 // 	Headers, URLSearchParams } from '@angular/http';
 
 
@@ -594,7 +594,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var RecordService = (function () {
     function RecordService(http) {
         this.http = http;
-        this.path = '/api/records';
+        this.path = 'http://localhost:8080/api/records';
     }
     RecordService.prototype.getRecords = function (order, lowestPrice, highestPrice) {
         var params = new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["e" /* HttpParams */]();
@@ -964,7 +964,7 @@ var AuthenticationService = (function () {
     function AuthenticationService(http, jwtUtilsService) {
         this.http = http;
         this.jwtUtilsService = jwtUtilsService;
-        this.loginPath = '/api/login';
+        this.loginPath = 'http://localhost:8080/api/login';
     }
     AuthenticationService.prototype.login = function (username, password) {
         var _this = this;
