@@ -16,19 +16,31 @@ import javax.persistence.ManyToOne;
 public class SecurityUserAuthority {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private SecurityUser user;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private SecurityAuthority authority;
+	
+	public SecurityUserAuthority(int id, SecurityUser user_id, SecurityAuthority authority_id) {
+		super();
+		this.id = id;
+		this.user = user_id;
+		this.authority  = authority_id;
+		
+	}
 
-	public Long getId() {
+	public SecurityUserAuthority() {
+		super();
+	}
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

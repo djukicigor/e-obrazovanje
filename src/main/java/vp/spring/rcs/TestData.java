@@ -8,9 +8,15 @@ import org.springframework.stereotype.Component;
 import vp.spring.rcs.model.Author;
 import vp.spring.rcs.model.Record;
 import vp.spring.rcs.model.Style;
+import vp.spring.rcs.model.user.SecurityUser;
+import vp.spring.rcs.model.user.SecurityAuthority;
+import vp.spring.rcs.model.user.SecurityUserAuthority;
 import vp.spring.rcs.service.AuthorService;
 import vp.spring.rcs.service.RecordService;
 import vp.spring.rcs.service.StyleService;
+import vp.spring.rcs.service.SecurityUserService;
+import vp.spring.rcs.service.SecurityAuthorityService;
+import vp.spring.rcs.service.SecurityUserAuthorityService;
 
 @Component
 public class TestData {
@@ -23,6 +29,15 @@ public class TestData {
 	
 	@Autowired
 	RecordService recordService;
+	
+	@Autowired
+	SecurityUserService securityUserService;
+	
+	@Autowired
+	SecurityAuthorityService securityAuthorityService;
+	
+	@Autowired
+	SecurityUserAuthorityService securityUserAuthorityService;
 
 	/*
 	 * Inicijalizacija testnih podataka. 
@@ -35,7 +50,7 @@ public class TestData {
 		Author johnColtrane = new Author("John Coltrane");
 		authorService.save(johnColtrane);
 		
-		Author bobDylan = new Author("Bob Dylan");
+		Author bobDylan = new Author("Aca Dylan");
 		authorService.save(bobDylan);
 		
 		Style coolJazz = new Style("Cool jazz");
@@ -66,6 +81,15 @@ public class TestData {
 		interstellarSpace.getStyles().add(jazz);
 		interstellarSpace.getStyles().add(avantGardeJazz);
 		recordService.save(interstellarSpace);
+		
+		SecurityUser user1 = new SecurityUser(1, "User", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
+		securityUserService.save(user1);
+		
+		SecurityAuthority authority1 = new SecurityAuthority(1, "User");
+		securityAuthorityService.save(authority1);
+		
+		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(1, user1, authority1);
+		securityUserAuthorityService.save(userAuthority1);
 	}
 	
 }

@@ -14,18 +14,29 @@ import javax.persistence.OneToMany;
 public class SecurityAuthority {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
 	
 	String name;
 	
 	@OneToMany(mappedBy = "authority", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<SecurityUserAuthority> userAuthorities = new HashSet<SecurityUserAuthority>();
+	
+	public SecurityAuthority(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+		
+	}
 
-	public Long getId() {
+	public SecurityAuthority() {
+		super();
+	}
+	
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
