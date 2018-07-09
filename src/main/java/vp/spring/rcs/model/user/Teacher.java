@@ -1,7 +1,9 @@
 package vp.spring.rcs.model.user;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
+@Entity
 public class Teacher extends SecurityUser {
 	
 	@GeneratedValue
