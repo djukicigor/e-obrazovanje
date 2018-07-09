@@ -25,7 +25,7 @@ public class Subject_lecture {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;	
 	
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private List<Teacher> teachers = new ArrayList<Teacher>();
 	
 	public Subject_lecture(Long id, Subject subject, List<Teacher> teachers) {
