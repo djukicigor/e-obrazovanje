@@ -62,12 +62,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and()
 			.authorizeRequests() // bez logovanja dostupni samo servisi login
 				.antMatchers("/api/login").permitAll()
-				.antMatchers(HttpMethod.GET, "/api/**").hasAuthority("ROLE_USER")
-				.antMatchers(HttpMethod.POST, "/api/*").hasAuthority("ROLE_ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/api/*").hasAuthority("ROLE_ADMIN")
-				.antMatchers(HttpMethod.PUT, "/api/*").hasAuthority("ROLE_ADMIN")
+//				.antMatchers(HttpMethod.GET, "/api/**").hasAuthority("ROLE_USER")
+//				.antMatchers(HttpMethod.POST, "/api/*").hasAuthority("ROLE_ADMIN")
+//				.antMatchers(HttpMethod.DELETE, "/api/*").hasAuthority("ROLE_ADMIN")
+//				.antMatchers(HttpMethod.PUT, "/api/*").hasAuthority("ROLE_ADMIN")
+				.antMatchers(HttpMethod.GET, "/api/**").permitAll()
+				.antMatchers(HttpMethod.POST, "/api/*").permitAll()
+				.antMatchers(HttpMethod.DELETE, "/api/*").permitAll()
+				.antMatchers(HttpMethod.PUT, "/api/*").permitAll()
 				.antMatchers("/*").permitAll()
-				.anyRequest().authenticated(); // za ostale akcije se mora biti ulogovan
+				.anyRequest().authenticated();
+//				.anyRequest().authenticated(); // za ostale akcije se mora biti ulogovan
 				
 		// pre standardnog Spring filtera, postavlja se nas filter za postavljanje korisnika na osnovu 
 		// JWT tokena u zahtevu
