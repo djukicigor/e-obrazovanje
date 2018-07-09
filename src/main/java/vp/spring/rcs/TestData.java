@@ -17,6 +17,8 @@ import vp.spring.rcs.service.StyleService;
 import vp.spring.rcs.service.SecurityUserService;
 import vp.spring.rcs.service.SecurityAuthorityService;
 import vp.spring.rcs.service.SecurityUserAuthorityService;
+import vp.spring.rcs.service.StudentService;
+import vp.spring.rcs.model.user.Student;
 
 @Component
 public class TestData {
@@ -38,6 +40,9 @@ public class TestData {
 	
 	@Autowired
 	SecurityUserAuthorityService securityUserAuthorityService;
+	
+	@Autowired
+	StudentService studentService;
 
 	/*
 	 * Inicijalizacija testnih podataka. 
@@ -90,6 +95,9 @@ public class TestData {
 		
 		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(1, user1, authority1);
 		securityUserAuthorityService.save(userAuthority1);
+		
+		Student student1 = new Student(1, "pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100");
+		studentService.save(student1);
 	}
 	
 }
