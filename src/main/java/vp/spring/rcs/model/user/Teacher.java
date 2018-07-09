@@ -11,7 +11,7 @@ public class Teacher extends SecurityUser {
 	
 	private String role;
 	
-	public Teacher(int id, String username, String password, String firstName, String lastName, int citizenID, String role) {
+	public Teacher(Long id, String username, String password, String firstName, String lastName, int citizenID, String role) {
 		super(id, username, password, firstName, lastName);
 		this.citizenID = citizenID;
 		this.role = role;

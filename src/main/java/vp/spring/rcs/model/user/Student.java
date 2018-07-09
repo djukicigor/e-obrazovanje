@@ -14,7 +14,7 @@ public class Student extends SecurityUser {
 	private String indexNumber;
 
 
-	public Student(int id, String username, String password, String firstName, String lastName, int citizenID, String indexNumber) {
+	public Student(Long id, String username, String password, String firstName, String lastName, int citizenID, String indexNumber) {
 		super(id, username, password, firstName, lastName);
 		this.citizenID = citizenID;
 		this.indexNumber = indexNumber;
