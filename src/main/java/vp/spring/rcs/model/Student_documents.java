@@ -1,12 +1,16 @@
 package vp.spring.rcs.model;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+
 import vp.spring.rcs.model.user.Student;
+
 
 @Entity
 public class Student_documents {
@@ -21,7 +25,7 @@ public class Student_documents {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Student student;
 	
-		
+	
 	public Student_documents(Long id, String imageURL, Student student) {
 		super();
 		this.id = id;
