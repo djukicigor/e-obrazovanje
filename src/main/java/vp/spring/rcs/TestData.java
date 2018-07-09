@@ -5,6 +5,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import vp.spring.rcs.model.Author;
 import vp.spring.rcs.model.Record;
 import vp.spring.rcs.model.Style;
@@ -98,6 +101,18 @@ public class TestData {
 		
 		Student student1 = new Student((long)1, "pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100");
 		studentService.save(student1);
+		System.out.println(user1);
+		System.out.println(student1);
+		
+//		Printing out objects as JSON for testing
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student1));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
