@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ErrorViewResolver;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +35,15 @@ public class App
 	        }
 	    };
 	}
+	
+	@Bean
+    public FilterRegistrationBean jwtFilter() {
+        final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(new SimpleCORSFilter());
+        registrationBean.addUrlPatterns("/api/*");
+
+        return registrationBean;
+    }
 	
 	public static void main( String[] args )
     {

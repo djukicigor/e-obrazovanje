@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Record, AuthorInterface, Order } from '../common.models';
 
-// import { Response, RequestOptions, 
+// import { Response, RequestOptions,
 // 	Headers, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
@@ -15,7 +15,7 @@ import { URLSearchParams } from '@angular/http/src/url_search_params';
 @Injectable()
 export class RecordService {
 
-	private readonly path = '/api/records';
+	private readonly path = 'http://localhost:8080/api/records';
 
 	constructor(private http: HttpClient) { }
 
@@ -39,7 +39,7 @@ export class RecordService {
 	}
 
 	getRecord(id: string): Observable<Record> {
-		return this.http.get<Record>(`/api/records/${id}`)
+		return this.http.get<Record>(`${this.path}/${id}`)
 			.catch((error: any) => Observable.throw(error.message || 'Server error'));
 	}
 
@@ -57,4 +57,4 @@ export class RecordService {
 				Observable.throw(error.message || 'Server error')
 			);
 	}
-} 
+}
