@@ -1,5 +1,9 @@
 package vp.spring.rcs;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +13,26 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import vp.spring.rcs.model.Author;
+import vp.spring.rcs.model.Passed_exams;
+import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Record;
 import vp.spring.rcs.model.Style;
+import vp.spring.rcs.model.Subject;
 import vp.spring.rcs.model.user.SecurityUser;
 import vp.spring.rcs.model.user.SecurityAuthority;
 import vp.spring.rcs.model.user.SecurityUserAuthority;
 import vp.spring.rcs.service.AuthorService;
+import vp.spring.rcs.service.PassedExamsService;
+import vp.spring.rcs.service.PassingExamsService;
 import vp.spring.rcs.service.RecordService;
 import vp.spring.rcs.service.StyleService;
+import vp.spring.rcs.service.SubjectLectureService;
+import vp.spring.rcs.service.SubjectPresenceService;
+import vp.spring.rcs.service.SubjectService;
 import vp.spring.rcs.service.TeacherService;
+import vp.spring.rcs.service.TransactionsService;
 import vp.spring.rcs.service.SecurityUserService;
+import vp.spring.rcs.service.StudentDocumentsService;
 import vp.spring.rcs.service.SecurityAuthorityService;
 import vp.spring.rcs.service.SecurityUserAuthorityService;
 import vp.spring.rcs.service.StudentService;
@@ -51,6 +65,28 @@ public class TestData {
 	
 	@Autowired
 	TeacherService teacherService;
+	
+	@Autowired
+	SubjectService subjectService;
+	
+	@Autowired
+	PassedExamsService passedExamsService;
+	
+	@Autowired
+	PassingExamsService passingExamsService;
+	
+	@Autowired
+	StudentDocumentsService studentDocumentsService;
+	
+	@Autowired
+	SubjectLectureService subjectLectureService;
+	
+	@Autowired
+	SubjectPresenceService subjectPresenceService;
+	
+	@Autowired
+	TransactionsService transactionsService;
+	
 
 	/*
 	 * Inicijalizacija testnih podataka. 
@@ -109,12 +145,24 @@ public class TestData {
 		
 		Teacher teacher1 = new Teacher((long)1, "bojana", "bojana", "Bojana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher1);
+		
+		/*Subject subject1 = new Subject((long)1, "srpski", "opis");
+		subjectService.save(subject1);
+		
+		List<Student> students = new ArrayList<>();
+		students.add(student1);
+		Passing_exams passingExam1 = new Passing_exams((long)1, new Date(), teacher1, students);
+		passingExamsService.save(passingExam1);
+		
+		Passed_exams passedExam1 = new Passed_exams((long)1, 10, passingExam1, student1);
+		passedExamsService.save(passedExam1);*/
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student1));
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(teacher1));
+			
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
