@@ -28,9 +28,8 @@ public class Subject_presence {
 	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
 	private List<Student> students = new ArrayList<Student>();
 	
-	public Subject_presence(Long id, Subject subject, List<Student> students) {
+	public Subject_presence(Subject subject, List<Student> students) {
 		super();
-		this.id = id;
 		this.subject = subject;
 		this.students = students;
 	}

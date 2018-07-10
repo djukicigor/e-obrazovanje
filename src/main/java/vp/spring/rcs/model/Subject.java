@@ -15,9 +15,8 @@ public class Subject {
 	
 	private String description;
 	
-	public Subject(Long id, String name, String description) {
+	public Subject(String name, String description) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 	}

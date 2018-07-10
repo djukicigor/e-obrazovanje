@@ -26,9 +26,8 @@ public class Student_documents {
 	private Student student;
 	
 	
-	public Student_documents(Long id, String imageURL, Student student) {
+	public Student_documents(String imageURL, Student student) {
 		super();
-		this.id = id;
 		this.imageURL = imageURL;
 		this.student = student;
 	}

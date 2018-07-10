@@ -22,9 +22,8 @@ public class Transactions {
 	private Student student;
 	
 	
-	public Transactions(Long id, float amount, Student student) {
+	public Transactions(float amount, Student student) {
 		super();
-		this.id = id;
 		this.amount = amount;
 		this.student = student;
 	}
