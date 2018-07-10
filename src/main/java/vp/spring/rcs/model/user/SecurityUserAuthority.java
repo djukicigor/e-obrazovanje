@@ -27,9 +27,8 @@ public class SecurityUserAuthority {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private SecurityAuthority authority;
 	
-	public SecurityUserAuthority(int id, SecurityUser user_id, SecurityAuthority authority_id) {
+	public SecurityUserAuthority(SecurityUser user_id, SecurityAuthority authority_id) {
 		super();
-		this.id = id;
 		this.user = user_id;
 		this.authority  = authority_id;
 		

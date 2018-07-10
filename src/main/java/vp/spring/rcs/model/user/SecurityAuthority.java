@@ -24,9 +24,8 @@ public class SecurityAuthority {
 	@OneToMany(mappedBy = "authority", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<SecurityUserAuthority> userAuthorities = new HashSet<SecurityUserAuthority>();
 	
-	public SecurityAuthority(int id, String name) {
+	public SecurityAuthority(String name) {
 		super();
-		this.id = id;
 		this.name = name;
 		
 	}
