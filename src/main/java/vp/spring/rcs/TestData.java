@@ -17,11 +17,13 @@ import vp.spring.rcs.model.user.SecurityUserAuthority;
 import vp.spring.rcs.service.AuthorService;
 import vp.spring.rcs.service.RecordService;
 import vp.spring.rcs.service.StyleService;
+import vp.spring.rcs.service.TeacherService;
 import vp.spring.rcs.service.SecurityUserService;
 import vp.spring.rcs.service.SecurityAuthorityService;
 import vp.spring.rcs.service.SecurityUserAuthorityService;
 import vp.spring.rcs.service.StudentService;
 import vp.spring.rcs.model.user.Student;
+import vp.spring.rcs.model.user.Teacher;
 
 @Component
 public class TestData {
@@ -46,6 +48,9 @@ public class TestData {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	TeacherService teacherService;
 
 	/*
 	 * Inicijalizacija testnih podataka. 
@@ -104,11 +109,14 @@ public class TestData {
 		System.out.println(user1);
 		System.out.println(student1);
 		
+		Teacher teacher1 = new Teacher((long)1, "bojana", "bojana", "Bojana", "Kusljic", 4848552, "uloga");
+		teacherService.save(teacher1);
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(teacher1));
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
