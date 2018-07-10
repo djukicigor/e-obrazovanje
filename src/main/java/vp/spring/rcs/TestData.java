@@ -3,7 +3,6 @@ package vp.spring.rcs;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,12 @@ import vp.spring.rcs.model.Author;
 import vp.spring.rcs.model.Passed_exams;
 import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Record;
+import vp.spring.rcs.model.Student_documents;
 import vp.spring.rcs.model.Style;
 import vp.spring.rcs.model.Subject;
+import vp.spring.rcs.model.Subject_lecture;
+import vp.spring.rcs.model.Subject_presence;
+import vp.spring.rcs.model.Transactions;
 import vp.spring.rcs.model.user.SecurityUser;
 import vp.spring.rcs.model.user.SecurityAuthority;
 import vp.spring.rcs.model.user.SecurityUserAuthority;
@@ -131,7 +134,7 @@ public class TestData {
 		interstellarSpace.getStyles().add(avantGardeJazz);
 		recordService.save(interstellarSpace);
 		
-		SecurityUser user1 = new SecurityUser((long)1, "User", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
+		SecurityUser user1 = new SecurityUser("User", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
 		securityUserService.save(user1);
 		
 		SecurityAuthority authority1 = new SecurityAuthority(1, "User");
@@ -140,28 +143,51 @@ public class TestData {
 		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(1, user1, authority1);
 		securityUserAuthorityService.save(userAuthority1);
 		
-		Student student1 = new Student((long)1, "pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
+		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		studentService.save(student1);
 		
-		Teacher teacher1 = new Teacher((long)1, "bojana", "bojana", "Bojana", "Kusljic", 4848552, "uloga");
+		Teacher teacher1 = new Teacher("bojana", "bojana", "Bojana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher1);
 		
-		/*Subject subject1 = new Subject((long)1, "srpski", "opis");
+		Subject subject1 = new Subject("srpski", "opis");
 		subjectService.save(subject1);
 		
 		List<Student> students = new ArrayList<>();
 		students.add(student1);
-		Passing_exams passingExam1 = new Passing_exams((long)1, new Date(), teacher1, students);
+		Passing_exams passingExam1 = new Passing_exams(new Date(), teacher1, students);
 		passingExamsService.save(passingExam1);
 		
-		Passed_exams passedExam1 = new Passed_exams((long)1, 10, passingExam1, student1);
-		passedExamsService.save(passedExam1);*/
+		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
+		passedExamsService.save(passedExam1);
+		
+		Student_documents studDoc1 = new Student_documents("slika", student1);
+		studentDocumentsService.save(studDoc1);
+		
+		List<Teacher> teachers = new ArrayList<>();
+		teachers.add(teacher1);
+		
+		Subject_lecture subLec1 = new Subject_lecture(subject1, teachers);
+		subjectLectureService.save(subLec1);
+		
+		Subject_presence subPres1 = new Subject_presence(subject1, students);
+		subjectPresenceService.save(subPres1);
+		
+		Transactions transaction1 = new Transactions(45678, student1);
+		transactionsService.save(transaction1);
+		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student1));
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(teacher1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subject1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passingExam1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passedExam1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(studDoc1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subLec1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subPres1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(transaction1));
 			
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block

@@ -28,9 +28,8 @@ public class Subject_lecture {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private List<Teacher> teachers = new ArrayList<Teacher>();
 	
-	public Subject_lecture(Long id, Subject subject, List<Teacher> teachers) {
+	public Subject_lecture(Subject subject, List<Teacher> teachers) {
 		super();
-		this.id = id;
 		this.subject = subject;
 		this.teachers = teachers;
 	}

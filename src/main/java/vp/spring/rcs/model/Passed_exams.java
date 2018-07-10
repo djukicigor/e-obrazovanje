@@ -26,9 +26,8 @@ public class Passed_exams {
 	private Student student;
 	
 	
-	public Passed_exams(Long id, int grade, Passing_exams passing_exams, Student student) {
+	public Passed_exams(int grade, Passing_exams passing_exams, Student student) {
 		super();
-		this.id = id;
 		this.grade = grade;
 		this.passing_exams = passing_exams;
 		this.student = student;

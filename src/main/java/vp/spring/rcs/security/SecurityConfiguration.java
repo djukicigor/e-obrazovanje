@@ -71,7 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.DELETE, "/api/*").permitAll()
 				.antMatchers(HttpMethod.PUT, "/api/*").permitAll()
 				.antMatchers("/*").permitAll()
-				.anyRequest().authenticated();
+				.anyRequest().permitAll();
 //				.anyRequest().authenticated(); // za ostale akcije se mora biti ulogovan
 				
 		// pre standardnog Spring filtera, postavlja se nas filter za postavljanje korisnika na osnovu 

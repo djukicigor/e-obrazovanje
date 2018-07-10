@@ -30,9 +30,8 @@ public class Passing_exams {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
 	private List<Student> students = new ArrayList<Student>();
 	
-	public Passing_exams(Long id, Date date, Teacher teacher, List<Student> students) {
+	public Passing_exams(Date date, Teacher teacher, List<Student> students) {
 		super();
-		this.id = id;
 		this.date = date;
 		this.teacher = teacher;
 		this.students = students;

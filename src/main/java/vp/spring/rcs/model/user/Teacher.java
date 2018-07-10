@@ -11,8 +11,8 @@ public class Teacher extends SecurityUser {
 	
 	private String role;
 	
-	public Teacher(Long id, String username, String password, String firstName, String lastName, int citizenID, String role) {
-		super(id, username, password, firstName, lastName);
+	public Teacher(String username, String password, String firstName, String lastName, int citizenID, String role) {
+		super(username, password, firstName, lastName);
 		this.citizenID = citizenID;
 		this.role = role;
 		// TODO Auto-generated constructor stub
