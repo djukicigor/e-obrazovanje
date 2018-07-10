@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class SecurityAuthority {
 	@Id
@@ -17,7 +19,8 @@ public class SecurityAuthority {
 	private int id;
 	
 	String name;
-	
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "authority", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<SecurityUserAuthority> userAuthorities = new HashSet<SecurityUserAuthority>();
 	

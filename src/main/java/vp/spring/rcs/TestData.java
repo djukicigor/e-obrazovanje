@@ -1,5 +1,6 @@
 package vp.spring.rcs;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -103,6 +104,11 @@ public class TestData {
 		
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		studentService.save(student1);
+		
+//		Set<SecurityUserAuthority> userAuthorities = new HashSet<SecurityUserAuthority>();
+//		userAuthorities.add(userAuthority1);
+//		
+//		user1.setUserAuthorities(userAuthorities);
 		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
