@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import vp.spring.rcs.model.Passing_exams;
+import vp.spring.rcs.model.Subject_presence;
 import vp.spring.rcs.model.user.SecurityUser;
 
 @Entity
@@ -27,6 +28,10 @@ public class Student extends SecurityUser {
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
 	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
+	
+	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinTable(name = "securityUser_subjectPresence", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
+	List<Subject_presence> subjectPresences = new ArrayList<Subject_presence>();
 
 	public Student(String username, String password, String firstName, String lastName, int citizenID, String indexNumber, float balance) {
 		super(username, password, firstName, lastName);
@@ -71,6 +76,14 @@ public class Student extends SecurityUser {
 
 	public void setPassingExams(List<Passing_exams> passingExams) {
 		this.passingExams = passingExams;
+	}
+	
+	public List<Subject_presence> getSubjectPresences() {
+		return subjectPresences;
+	}
+
+	public void setSubjectPresences(List<Subject_presence> subjectPresences) {
+		this.subjectPresences = subjectPresences;
 	}
 	
 }

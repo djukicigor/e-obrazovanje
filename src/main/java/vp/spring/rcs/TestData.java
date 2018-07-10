@@ -240,10 +240,10 @@ public class TestData {
 		teachers.add(teacher3);
 		teachers.add(teacher4);
 
-		Subject_lecture subLec1 = new Subject_lecture(subject1, teachers);
+		Subject_lecture subLec1 = new Subject_lecture(subject1);
 		subjectLectureService.save(subLec1);
 
-		Subject_presence subPres1 = new Subject_presence(subject1, students);
+		Subject_presence subPres1 = new Subject_presence(subject1);
 		subjectPresenceService.save(subPres1);
 
 		Transactions transaction1 = new Transactions(45678, student1);
