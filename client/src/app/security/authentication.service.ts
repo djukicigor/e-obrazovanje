@@ -10,7 +10,7 @@ import { JwtUtilsService } from 'app/security/jwt-utils.service';
 @Injectable()
 export class AuthenticationService {
 
-  private readonly loginPath = '/api/login'
+  private readonly loginPath = 'http://localhost:8080/api/login'
 
   constructor(private http: HttpClient, private jwtUtilsService: JwtUtilsService) { }
 
@@ -20,10 +20,10 @@ export class AuthenticationService {
       .map((res: any) => {
         let token = res && res['token'];
         if (token) {
-          localStorage.setItem('currentUser', JSON.stringify({ 
-                                    username: username, 
-                                    roles:this.jwtUtilsService.getRoles(token), 
-                                    token: token 
+          localStorage.setItem('currentUser', JSON.stringify({
+                                    username: username,
+                                    roles:this.jwtUtilsService.getRoles(token),
+                                    token: token
                                   }));
           return true;
         }
