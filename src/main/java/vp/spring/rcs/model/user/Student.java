@@ -16,8 +16,8 @@ public class Student extends SecurityUser {
 	private float balance;
 
 
-	public Student(Long id, String username, String password, String firstName, String lastName, int citizenID, String indexNumber, float balance) {
-		super(id, username, password, firstName, lastName);
+	public Student(String username, String password, String firstName, String lastName, int citizenID, String indexNumber, float balance) {
+		super(username, password, firstName, lastName);
 		this.citizenID = citizenID;
 		this.indexNumber = indexNumber;
 		this.balance = balance;
