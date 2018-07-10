@@ -147,12 +147,11 @@ public class TestData {
 		
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		studentService.save(student1);
-
 		
 		SecurityAuthority authority2 = new SecurityAuthority("Student");
 		securityAuthorityService.save(authority2);
 		
-<<<<<<< HEAD
+
 		Student student2 = new Student("zoran", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Petrovic", 123456789, "SF120", 10000);
 		studentService.save(student2);
 		
@@ -161,10 +160,10 @@ public class TestData {
 		
 		Student student4 = new Student("boban", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Boban", "Petrovic", 123456789, "SF130", 10000);
 		studentService.save(student4);
-=======
+
 		SecurityUserAuthority userAuthority2 = new SecurityUserAuthority(student1, authority2);
 		securityUserAuthorityService.save(userAuthority2);
->>>>>>> ed99e83e8e51ced9cba8ac53383f110d50e4c2ad
+
 		
 		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher1);
@@ -189,24 +188,52 @@ public class TestData {
 		
 		List<Student> students = new ArrayList<>();
 		students.add(student1);
-<<<<<<< HEAD
 		students.add(student2);
 		students.add(student3);
 		students.add(student4);
-=======
 		
->>>>>>> ed99e83e8e51ced9cba8ac53383f110d50e4c2ad
+		List<Student> students2 = new ArrayList<>();
+		students2.add(student1);
+		students2.add(student2);
+		students2.add(student3);
+		students2.add(student4);
+
 		Passing_exams passingExam1 = new Passing_exams(new Date(), teacher1, students);
 		passingExamsService.save(passingExam1);
+		
+//		Passing_exams passingExam2 = new Passing_exams(new Date(), teacher2, students2);
+//		passingExamsService.save(passingExam2);
+		
+//		Passing_exams passingExam3 = new Passing_exams(new Date(), teacher3, students);
+//		passingExamsService.save(passingExam3);
+		
 		
 		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
 		passedExamsService.save(passedExam1);
 		
+		Passed_exams passedExam2 = new Passed_exams(9, passingExam1, student2);
+		passedExamsService.save(passedExam2);
+		
+		Passed_exams passedExam3 = new Passed_exams(8, passingExam1, student3);
+		passedExamsService.save(passedExam3);
+		
 		Student_documents studDoc1 = new Student_documents("slika", student1);
 		studentDocumentsService.save(studDoc1);
 		
+		Student_documents studDoc2 = new Student_documents("slika", student2);
+		studentDocumentsService.save(studDoc2);
+		
+		Student_documents studDoc3 = new Student_documents("slika", student3);
+		studentDocumentsService.save(studDoc3);
+		
+		Student_documents studDoc4 = new Student_documents("slika", student4);
+		studentDocumentsService.save(studDoc4);
+		
 		List<Teacher> teachers = new ArrayList<>();
 		teachers.add(teacher1);
+		teachers.add(teacher2);
+		teachers.add(teacher3);
+		teachers.add(teacher4);
 		
 		Subject_lecture subLec1 = new Subject_lecture(subject1, teachers);
 		subjectLectureService.save(subLec1);
@@ -216,6 +243,15 @@ public class TestData {
 		
 		Transactions transaction1 = new Transactions(45678, student1);
 		transactionsService.save(transaction1);
+		
+		Transactions transaction2 = new Transactions(12000, student2);
+		transactionsService.save(transaction2);
+		
+		Transactions transaction3 = new Transactions(15000, student3);
+		transactionsService.save(transaction3);
+		
+		Transactions transaction4 = new Transactions(20000, student4);
+		transactionsService.save(transaction4);
 		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
