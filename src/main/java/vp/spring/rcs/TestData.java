@@ -146,14 +146,41 @@ public class TestData {
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		studentService.save(student1);
 		
-		Teacher teacher1 = new Teacher("bojana", "bojana", "Bojana", "Kusljic", 4848552, "uloga");
+		Student student2 = new Student("zoran", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Petrovic", 123456789, "SF120", 10000);
+		studentService.save(student2);
+		
+		Student student3 = new Student("goran", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Goran", "Petrovic", 123456789, "SF130", 10000);
+		studentService.save(student3);
+		
+		Student student4 = new Student("boban", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Boban", "Petrovic", 123456789, "SF130", 10000);
+		studentService.save(student4);
+		
+		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher1);
+		
+		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Kusljic", 4848552, "uloga");
+		teacherService.save(teacher2);
+		
+		Teacher teacher3 = new Teacher("jovana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
+		teacherService.save(teacher3);
+		
+		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
+		teacherService.save(teacher4);
 		
 		Subject subject1 = new Subject("srpski", "opis");
 		subjectService.save(subject1);
 		
+		Subject subject2 = new Subject("matematika", "opis");
+		subjectService.save(subject2);
+		
+		Subject subject3 = new Subject("engleski", "opis");
+		subjectService.save(subject3);
+		
 		List<Student> students = new ArrayList<>();
 		students.add(student1);
+		students.add(student2);
+		students.add(student3);
+		students.add(student4);
 		Passing_exams passingExam1 = new Passing_exams(new Date(), teacher1, students);
 		passingExamsService.save(passingExam1);
 		
