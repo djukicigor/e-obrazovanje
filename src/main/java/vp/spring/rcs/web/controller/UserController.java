@@ -1,5 +1,7 @@
 package vp.spring.rcs.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import vp.spring.rcs.model.user.SecurityUser;
 import vp.spring.rcs.security.TokenUtils;
+import vp.spring.rcs.service.SecurityUserService;
+import vp.spring.rcs.service.TeacherService;
 import vp.spring.rcs.web.dto.LoginDTO;
 import vp.spring.rcs.web.dto.TokenDTO;
 
@@ -29,6 +34,9 @@ public class UserController {
 	
 	@Autowired
 	TokenUtils tokenUtils;
+
+	@Autowired
+	SecurityUserService securityUserService;
 	
 	@RequestMapping(value = "/api/login", method = RequestMethod.POST)
 	public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO loginDTO) {
@@ -44,5 +52,11 @@ public class UserController {
         } catch (Exception ex) {
             return new ResponseEntity<TokenDTO>(new TokenDTO(""), HttpStatus.BAD_REQUEST);
         }
+	}
+	
+	@RequestMapping(value = "/api/users", method = RequestMethod.GET)
+	public ResponseEntity<List<SecurityUser>> getAll() {
+		List<SecurityUser> users = securityUserService.findAll();
+		return new ResponseEntity<>(users, HttpStatus.OK); 
 	}
 }

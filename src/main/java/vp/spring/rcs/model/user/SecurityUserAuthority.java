@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Mapping table between User and Authority
  * @author Goran
@@ -18,15 +20,15 @@ public class SecurityUserAuthority {
 	@GeneratedValue
 	private int id;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private SecurityUser user;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private SecurityAuthority authority;
 	
-	public SecurityUserAuthority(int id, SecurityUser user_id, SecurityAuthority authority_id) {
+	public SecurityUserAuthority(SecurityUser user_id, SecurityAuthority authority_id) {
 		super();
-		this.id = id;
 		this.user = user_id;
 		this.authority  = authority_id;
 		

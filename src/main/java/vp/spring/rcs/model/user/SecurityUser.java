@@ -23,7 +23,7 @@ public class SecurityUser {
 	private String firstName;
 	
 	private String lastName;
-	
+
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private Set<SecurityUserAuthority> userAuthorities = new HashSet<SecurityUserAuthority>();
 	

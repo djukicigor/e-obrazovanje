@@ -1,5 +1,7 @@
 package vp.spring.rcs;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -134,18 +136,23 @@ public class TestData {
 		interstellarSpace.getStyles().add(avantGardeJazz);
 		recordService.save(interstellarSpace);
 		
-		SecurityUser user1 = new SecurityUser("User", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
+		SecurityUser user1 = new SecurityUser("admin", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
 		securityUserService.save(user1);
 		
-		SecurityAuthority authority1 = new SecurityAuthority(1, "User");
+		SecurityAuthority authority1 = new SecurityAuthority("admin");
 		securityAuthorityService.save(authority1);
 		
-		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(1, user1, authority1);
+		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(user1, authority1);
 		securityUserAuthorityService.save(userAuthority1);
 		
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		studentService.save(student1);
+
 		
+		SecurityAuthority authority2 = new SecurityAuthority("Student");
+		securityAuthorityService.save(authority2);
+		
+<<<<<<< HEAD
 		Student student2 = new Student("zoran", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Petrovic", 123456789, "SF120", 10000);
 		studentService.save(student2);
 		
@@ -154,6 +161,10 @@ public class TestData {
 		
 		Student student4 = new Student("boban", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Boban", "Petrovic", 123456789, "SF130", 10000);
 		studentService.save(student4);
+=======
+		SecurityUserAuthority userAuthority2 = new SecurityUserAuthority(student1, authority2);
+		securityUserAuthorityService.save(userAuthority2);
+>>>>>>> ed99e83e8e51ced9cba8ac53383f110d50e4c2ad
 		
 		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher1);
@@ -178,9 +189,13 @@ public class TestData {
 		
 		List<Student> students = new ArrayList<>();
 		students.add(student1);
+<<<<<<< HEAD
 		students.add(student2);
 		students.add(student3);
 		students.add(student4);
+=======
+		
+>>>>>>> ed99e83e8e51ced9cba8ac53383f110d50e4c2ad
 		Passing_exams passingExam1 = new Passing_exams(new Date(), teacher1, students);
 		passingExamsService.save(passingExam1);
 		
