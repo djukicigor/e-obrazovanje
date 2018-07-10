@@ -99,10 +99,8 @@ public class TestData {
 		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(1, user1, authority1);
 		securityUserAuthorityService.save(userAuthority1);
 		
-		Student student1 = new Student((long)1, "pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100");
+		Student student1 = new Student((long)1, "pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		studentService.save(student1);
-		System.out.println(user1);
-		System.out.println(student1);
 		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
