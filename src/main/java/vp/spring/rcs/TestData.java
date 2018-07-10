@@ -190,7 +190,7 @@ public class TestData {
 		students.add(student3);
 		students.add(student4);
 
-		Passing_exams passingExam1 = new Passing_exams(new Date(), teacher1, students);
+		Passing_exams passingExam1 = new Passing_exams(new Date(), teacher1);
 		passingExamsService.save(passingExam1);
 
 		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
