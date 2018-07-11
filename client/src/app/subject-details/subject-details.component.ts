@@ -27,6 +27,7 @@ export class SubjectDetailsComponent implements OnInit {
           this.isDataAvailable = true;
         }
       );
+    });
   }
 
 }

@@ -24,4 +24,8 @@ export class SubjectComponent implements OnInit {
     this.router.navigate(['/subject',id]);
   }
 
+  edit = function (id) {
+    this.router.navigate(['/subject/edit',id]);
+  }
+
 }

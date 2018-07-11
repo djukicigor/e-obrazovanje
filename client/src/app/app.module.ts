@@ -30,6 +30,7 @@ import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'subject/:id', component: SubjectDetailsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'subject/edit/:id', component: EditSubjectComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },

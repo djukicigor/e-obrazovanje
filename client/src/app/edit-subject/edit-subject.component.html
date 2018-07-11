@@ -1,3 +1,11 @@
-<p>
-  edit-subject works!
-</p>
+<div *ngIf="isDataAvailable">
+    <label>Name:
+        <input [(ngModel)]="subject.name" placeholder="Name">
+    </label>
+    <br>
+    <label>Description:
+        <input [(ngModel)]="subject.description" placeholder="Description">
+    </label>
+    <br>
+    <button class="btn btn-primary" (click)="save()">save</button>
+  </div>
