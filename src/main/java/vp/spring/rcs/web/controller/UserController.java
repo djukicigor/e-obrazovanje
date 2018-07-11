@@ -11,12 +11,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import vp.spring.rcs.model.Student_documents;
 import vp.spring.rcs.model.user.SecurityUser;
+import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.security.TokenUtils;
 import vp.spring.rcs.service.SecurityUserService;
 import vp.spring.rcs.service.TeacherService;
@@ -58,5 +61,27 @@ public class UserController {
 	public ResponseEntity<List<SecurityUser>> getAll() {
 		List<SecurityUser> users = securityUserService.findAll();
 		return new ResponseEntity<>(users, HttpStatus.OK); 
+	}
+	
+	@RequestMapping(value = "/api/users/username/{username}", method = RequestMethod.GET)
+	public ResponseEntity<SecurityUser> getByUsername(@PathVariable String username) {
+		SecurityUser student = securityUserService.findByUsername(username);
+		
+		if (student != null) {
+			return new ResponseEntity<>(student, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@RequestMapping(value = "/api/users/{id}", method = RequestMethod.GET)
+	public ResponseEntity<SecurityUser> getById(@PathVariable Long id) {
+		SecurityUser student = securityUserService.findOne(id);
+		
+		if (student != null) {
+			return new ResponseEntity<>(student, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 }
