@@ -21,7 +21,7 @@ public class Transactions {
 	private float amount;
 	
 	@JsonIgnore
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Student student;
 	
 	public Transactions(float amount, Student student) {

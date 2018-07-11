@@ -150,20 +150,30 @@ public class TestData {
 		Subject subject1 = new Subject("srpski", "opis");
 		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
 		Transactions transaction1 = new Transactions(45678, student1);
+		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
 		Subject_presence subPres1 = new Subject_presence(subject1);
+		Student_documents studDoc1 = new Student_documents("slika", student1);
+		Subject_lecture subLec1 = new Subject_lecture(subject1);
+		
+		
 		
 		subjectService.save(subject1);
 		teacherService.save(teacher1);
 		passingExamsService.save(passingExam1);
 		studentService.save(student1);
-		transactionsService.save(transaction1);
+		passedExamsService.save(passedExam1);
 		subjectPresenceService.save(subPres1);
+		transactionsService.save(transaction1);
+		studentDocumentsService.save(studDoc1);
+		subjectLectureService.save(subLec1);
 		student1.addPassingExam(passingExam1);
 		student1.addTransaction(transaction1);
+		student1.addPassed_exams(passedExam1);
 		student1.addSubjectPresence(subPres1);
+		student1.addStudent_documents(studDoc1);
 		studentService.save(student1);
-		
-		student1.addTransaction(transaction1);
+		teacher1.addSubjectLecture(subLec1);
+		teacherService.save(teacher1);
 		
 		SecurityAuthority authority2 = new SecurityAuthority("Student");
 		securityAuthorityService.save(authority2);
@@ -214,8 +224,7 @@ public class TestData {
 		students2.add(student3);
 		students2.add(student4);
 		
-		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
-		passedExamsService.save(passedExam1);
+		
 		
 		Passed_exams passedExam2 = new Passed_exams(9, passingExam1, student2);
 		passedExamsService.save(passedExam2);
@@ -223,8 +232,7 @@ public class TestData {
 		Passed_exams passedExam3 = new Passed_exams(8, passingExam1, student3);
 		passedExamsService.save(passedExam3);
 		
-		Student_documents studDoc1 = new Student_documents("slika", student1);
-		studentDocumentsService.save(studDoc1);
+		
 		
 		Student_documents studDoc2 = new Student_documents("slika", student2);
 		studentDocumentsService.save(studDoc2);
@@ -241,8 +249,7 @@ public class TestData {
 		teachers.add(teacher3);
 		teachers.add(teacher4);
 
-		Subject_lecture subLec1 = new Subject_lecture(subject1);
-		subjectLectureService.save(subLec1);
+		
 		
 //		Transactions transaction2 = new Transactions(12000);
 //		transactionsService.save(transaction2);
