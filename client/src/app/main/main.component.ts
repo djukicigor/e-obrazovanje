@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Record, AuthorInterface, Order } from '../common.models';
+import { Record, AuthorInterface, Order, User, SubjectPresencesInterface } from '../common.models';
 
 import * as _ from 'lodash';
 
 import { PriceLimits } from '../filter-records/filter-records.component';
 
 import { RecordService } from '../main/record.service';
+import { UserService } from '../main/user.service';
 
 @Component({
   selector: 'app-main',
@@ -13,13 +14,15 @@ import { RecordService } from '../main/record.service';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  public records: Record[];	  
-  public newRecord: Record; 
+  public records: Record[];
+  public newRecord: Record;
   public orderTypes = Order;
   public priceFilter: PriceLimits;
   public authors: AuthorInterface[];
+  public user: User;
+  public subjectPresences: SubjectPresencesInterface[];
 
-  constructor(private recordService: RecordService) {
+  constructor(private recordService: RecordService, private userService:  UserService) {
     recordService.getRecords();
     this.priceFilter = {
       lowest:0,
@@ -34,6 +37,12 @@ export class MainComponent implements OnInit {
   }
 
   private loadData(order?: Order){
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.userService.getUser(currentUser.username)
+      .subscribe((user: User) => {
+        this.user = user;
+        this.subjectPresences = user.subjectPresences;
+      })
     this.recordService.
       getRecords(order,this.priceFilter.lowest,this.priceFilter.highest).
         subscribe((records: Record[]) => {this.records = records;});
