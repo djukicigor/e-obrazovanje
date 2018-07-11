@@ -24,6 +24,8 @@ import { UserService } from './main/user.service';
 import { SubjectListComponent } from './subject-list/subject-list.component';
 import { SubjectComponent } from './subject/subject.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
+import { SubjectService } from './main/subject.service';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
@@ -49,6 +51,7 @@ const appRoutes: Routes = [
     SubjectListComponent,
     SubjectComponent,
     SubjectDetailsComponent,
+    EditSubjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ const appRoutes: Routes = [
     AuthenticationService,
     CanActivateAuthGuard,
     JwtUtilsService,
-    UserService
+    UserService,
+    SubjectService,
   ],
   bootstrap: [AppComponent]
 })
