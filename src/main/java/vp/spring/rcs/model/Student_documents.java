@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import vp.spring.rcs.model.user.Student;
 
@@ -22,7 +23,8 @@ public class Student_documents {
 		
 	private String imageURL;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Student student;
 	
 	

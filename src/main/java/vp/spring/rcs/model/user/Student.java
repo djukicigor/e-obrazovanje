@@ -12,8 +12,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-
+import vp.spring.rcs.model.Passed_exams;
 import vp.spring.rcs.model.Passing_exams;
+import vp.spring.rcs.model.Student_documents;
 import vp.spring.rcs.model.Subject_presence;
 import vp.spring.rcs.model.Transactions;
 import vp.spring.rcs.model.user.SecurityUser;
@@ -36,8 +37,14 @@ public class Student extends SecurityUser {
     @JoinTable(name = "securityUser_subjectPresence", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_presence> subjectPresences = new ArrayList<Subject_presence>();
 
-	@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.LAZY)
+	List<Student_documents> studentDocuments = new ArrayList<Student_documents>();
+	
+	@OneToMany(fetch=FetchType.LAZY)
 	List<Transactions> transactions = new ArrayList<Transactions>();
+	
+	@OneToMany(fetch=FetchType.LAZY)
+	List<Passed_exams> passedExams = new ArrayList<Passed_exams>();
 	
 //	uraditi m2m subject_presence, student_document o2m, passed_exams o2m namestiti getere setere za sve u svemu(add/remove)
 	
@@ -108,6 +115,38 @@ public class Student extends SecurityUser {
 	
 	public void removeTransaction(Transactions transaction){
 		transactions.remove(transaction);
+	}
+	
+	public List<Passed_exams> getPassed_exams() {
+		return passedExams;
+	}
+
+	public void setPassed_exams(List<Passed_exams> passedExams) {
+		this.passedExams = passedExams;
+	}
+	
+	public void addPassed_exams(Passed_exams passedExam){
+		this.passedExams.add(passedExam);
+	}
+	
+	public void removePassed_exams(Passed_exams passedExam){
+		passedExams.remove(passedExam);
+	}
+	
+	public List<Student_documents> getStudent_documents() {
+		return studentDocuments;
+	}
+
+	public void setStudent_documents(List<Student_documents> studentDocuments) {
+		this.studentDocuments = studentDocuments;
+	}
+	
+	public void addStudent_documents(Student_documents studentDocument){
+		this.studentDocuments.add(studentDocument);
+	}
+	
+	public void removeStudent_documents(Student_documents studentDocument){
+		studentDocuments.remove(studentDocument);
 	}
 	
 	public void addPassingExam(Passing_exams passingExam){

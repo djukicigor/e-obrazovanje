@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.model.user.Teacher;
 
 
@@ -30,7 +29,7 @@ public class Subject_lecture {
 	private Subject subject;	
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy="subjectsLecture", fetch=FetchType.LAZY)
+	@ManyToMany(mappedBy="subjectLectures", fetch=FetchType.LAZY)
 	List<Teacher> teachers= new ArrayList<Teacher>();
 	
 	public Subject_lecture(Subject subject) {
@@ -64,6 +63,21 @@ public class Subject_lecture {
 
 	public void setTeachers(List<Teacher> teachers) {
 		this.teachers = teachers;
+	}
+	
+	public void addTeacher(Teacher teacher){
+		this.teachers.add(teacher);
+		
+		if(!teacher.getSubjectLectures().contains(this)){
+			teacher.addSubjectLecture(this);
+		}
+	}
+	
+	public void removeTeacher(Teacher teacher){
+		if(teacher.getSubjectLectures().contains(this)){
+			teacher.getSubjectLectures().remove(this);
+		}
+		teachers.remove(teacher);
 	}
 
 }
