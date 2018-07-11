@@ -31,7 +31,7 @@ public class Student extends SecurityUser {
 	
 	private float balance;
 	
-	@JsonIgnoreProperties({"students", "teacher.passingExams"})
+	@JsonIgnoreProperties("students")
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
 	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
