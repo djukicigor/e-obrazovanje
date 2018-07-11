@@ -1,3 +1,72 @@
+
+export class User implements UserInterface {
+	public id: number;
+	public username: string;
+	public password: string;
+	public firstName: string;
+	public lastName: string;
+	public citizenID: number;
+	public indexNumber: string;
+	public balance: number;
+	public userAuthorities: AuthorityInterface[];
+	public passingExams: ExamInterface[];
+	public subjectPresences: SubjectInterface[];
+	public transactions: TransactionInterface[];
+
+	constructor(userCfg:UserInterface) {
+		this.id = userCfg.id;
+		this.username = userCfg.username;
+		this.password = userCfg.password;
+		this.firstName = userCfg.firstName;
+		this.lastName = userCfg.lastName;
+		this.citizenID = userCfg.citizenID;
+		this.indexNumber = userCfg.indexNumber;
+		this.balance = userCfg.balance;
+		this.userAuthorities = userCfg.userAuthorities;
+		this.passingExams = userCfg.passingExams;
+		this.subjectPresences = userCfg.subjectPresences;
+		this.transactions = userCfg.transactions;
+	}
+}
+
+interface UserInterface {
+	id?: number;
+	username: string;
+	password: string;
+	firstName: string;
+	lastName: string;
+	citizenID: number;
+	indexNumber: string;
+	balance: number;
+	userAuthorities: AuthorityInterface[];
+	passingExams: ExamInterface[];
+	subjectPresences: SubjectInterface[];
+	transactions: TransactionInterface[];
+}
+
+interface AuthorityInterface {
+	id?: number;
+	authority: object;
+}
+
+interface ExamInterface {
+	id?: number;
+	date: Date;
+	subject: SubjectInterface;
+	teacher: UserInterface;
+}
+
+interface SubjectInterface {
+	id?: number;
+	name: string;
+	description: string;
+}
+
+interface TransactionInterface {
+	id?: number;
+	amount: number;
+}
+
 export class Record implements RecordInterface{
 	public id: number;
 	public title: string;
@@ -5,7 +74,7 @@ export class Record implements RecordInterface{
 	public styles: StyleInterface[];
 	public author: AuthorInterface;
 	public price: number;
-		
+
 	constructor(recordCfg:RecordInterface)
 	{
 		this.id = recordCfg.id;
