@@ -172,6 +172,7 @@ public class TestData {
 		student1.addSubjectPresence(subPres1);
 		student1.addStudent_documents(studDoc1);
 		teacher1.addSubjectLecture(subLec1);
+		teacher1.addPassingExam(passingExam1);
 		teacherService.save(teacher1);
 //		studentService.save(student1);
 		
