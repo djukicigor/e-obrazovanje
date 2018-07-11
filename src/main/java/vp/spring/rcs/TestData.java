@@ -150,14 +150,17 @@ public class TestData {
 		Subject subject1 = new Subject("srpski", "opis");
 		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
 		Transactions transaction1 = new Transactions(45678, student1);
+		Subject_presence subPres1 = new Subject_presence(subject1);
 		
 		subjectService.save(subject1);
 		teacherService.save(teacher1);
 		passingExamsService.save(passingExam1);
 		studentService.save(student1);
 		transactionsService.save(transaction1);
+		subjectPresenceService.save(subPres1);
 		student1.addPassingExam(passingExam1);
 		student1.addTransaction(transaction1);
+		student1.addSubjectPresence(subPres1);
 		studentService.save(student1);
 		
 		student1.addTransaction(transaction1);
@@ -182,7 +185,6 @@ public class TestData {
 
 		SecurityUserAuthority userAuthority3 = new SecurityUserAuthority(student3, authority3);
 		securityUserAuthorityService.save(userAuthority3);
-
 
 
 		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Kusljic", 4848552, "uloga");
@@ -211,16 +213,6 @@ public class TestData {
 		students2.add(student2);
 		students2.add(student3);
 		students2.add(student4);
-
-		
-		
-		
-//		Passing_exams passingExam2 = new Passing_exams(new Date(), teacher2, students2);
-//		passingExamsService.save(passingExam2);
-		
-//		Passing_exams passingExam3 = new Passing_exams(new Date(), teacher3, students);
-//		passingExamsService.save(passingExam3);
-		
 		
 		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
 		passedExamsService.save(passedExam1);
@@ -251,9 +243,6 @@ public class TestData {
 
 		Subject_lecture subLec1 = new Subject_lecture(subject1);
 		subjectLectureService.save(subLec1);
-
-		Subject_presence subPres1 = new Subject_presence(subject1);
-		subjectPresenceService.save(subPres1);
 		
 //		Transactions transaction2 = new Transactions(12000);
 //		transactionsService.save(transaction2);

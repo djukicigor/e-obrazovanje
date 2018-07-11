@@ -125,4 +125,19 @@ public class Student extends SecurityUser {
 		passingExams.remove(passingExam);
 	}
 	
+	public void addSubjectPresence(Subject_presence subjectPresence){
+		this.subjectPresences.add(subjectPresence);
+		
+		if(!subjectPresence.getStudents().contains(this)){
+			subjectPresence.addStudent(this);
+		}
+	}
+	
+	public void removeSubjectPresence(Subject_presence subjectPresence){
+		if(subjectPresence.getStudents().contains(this)){
+			subjectPresence.getStudents().remove(this);
+		}
+		passingExams.remove(subjectPresence);
+	}
+	
 }
