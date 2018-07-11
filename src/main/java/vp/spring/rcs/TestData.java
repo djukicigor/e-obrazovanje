@@ -146,8 +146,21 @@ public class TestData {
 		securityUserAuthorityService.save(userAuthority1);
 
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
+		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
+		Subject subject1 = new Subject("srpski", "opis");
+		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
+		Transactions transaction1 = new Transactions(45678, student1);
+		
+		subjectService.save(subject1);
+		teacherService.save(teacher1);
+		passingExamsService.save(passingExam1);
 		studentService.save(student1);
-
+		transactionsService.save(transaction1);
+		student1.addPassingExam(passingExam1);
+		student1.addTransaction(transaction1);
+		studentService.save(student1);
+		
+		student1.addTransaction(transaction1);
 		
 		SecurityAuthority authority2 = new SecurityAuthority("Student");
 		securityAuthorityService.save(authority2);
@@ -170,8 +183,7 @@ public class TestData {
 		SecurityUserAuthority userAuthority3 = new SecurityUserAuthority(student3, authority3);
 		securityUserAuthorityService.save(userAuthority3);
 
-		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
-		teacherService.save(teacher1);
+
 
 		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher2);
@@ -181,9 +193,6 @@ public class TestData {
 
 		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher4);
-
-		Subject subject1 = new Subject("srpski", "opis");
-		subjectService.save(subject1);
 
 		Subject subject2 = new Subject("matematika", "opis");
 		subjectService.save(subject2);
@@ -203,8 +212,8 @@ public class TestData {
 		students2.add(student3);
 		students2.add(student4);
 
-		Passing_exams passingExam1 = new Passing_exams(new Date(), teacher1);
-		passingExamsService.save(passingExam1);
+		
+		
 		
 //		Passing_exams passingExam2 = new Passing_exams(new Date(), teacher2, students2);
 //		passingExamsService.save(passingExam2);
@@ -245,18 +254,15 @@ public class TestData {
 
 		Subject_presence subPres1 = new Subject_presence(subject1);
 		subjectPresenceService.save(subPres1);
-
-		Transactions transaction1 = new Transactions(45678, student1);
-		transactionsService.save(transaction1);
 		
-		Transactions transaction2 = new Transactions(12000, student2);
-		transactionsService.save(transaction2);
-		
-		Transactions transaction3 = new Transactions(15000, student3);
-		transactionsService.save(transaction3);
-		
-		Transactions transaction4 = new Transactions(20000, student4);
-		transactionsService.save(transaction4);
+//		Transactions transaction2 = new Transactions(12000);
+//		transactionsService.save(transaction2);
+//		
+//		Transactions transaction3 = new Transactions(15000);
+//		transactionsService.save(transaction3);
+//		
+//		Transactions transaction4 = new Transactions(20000);
+//		transactionsService.save(transaction4);
 		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();

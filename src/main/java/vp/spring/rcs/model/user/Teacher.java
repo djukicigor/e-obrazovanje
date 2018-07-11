@@ -26,6 +26,8 @@ public class Teacher extends SecurityUser {
     @JoinTable(name = "securityUser_subjectLecture", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_lecture> subjectsLecture = new ArrayList<Subject_lecture>();
 	
+//	uraditi subject_lecture m2m , passing_exams o2m... namestiti getere setere za sve u svemu(add/remove)
+	
 	public Teacher(String username, String password, String firstName, String lastName, int citizenID, String role) {
 		super(username, password, firstName, lastName);
 		this.citizenID = citizenID;

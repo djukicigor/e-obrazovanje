@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,6 +24,9 @@ public class Passing_exams {
     private Long id;
 	
 	private Date date;
+
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Subject subject;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Teacher teacher;
@@ -34,9 +35,10 @@ public class Passing_exams {
 	@ManyToMany(mappedBy="passingExams", fetch=FetchType.LAZY)
 	List<Student> students = new ArrayList<Student>();
 	
-	public Passing_exams(Date date, Teacher teacher) {
+	public Passing_exams(Date date, Subject subject, Teacher teacher) {
 		super();
 		this.date = date;
+		this.subject = subject;
 		this.teacher = teacher;
 	}
 	
@@ -68,11 +70,34 @@ public class Passing_exams {
 		this.teacher = teacher;
 	}
 
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject= subject;
+	}
+
 	public List<Student> getStudents() {
 		return students;
 	}
 
 	public void setStudents(List<Student> students) {
 		this.students = students;
+	}
+	
+	public void addStudent(Student student){
+		this.students.add(student);
+		
+		if(!student.getPassingExams().contains(this)){
+			student.addPassingExam(this);
+		}
+	}
+	
+	public void removeStudent(Student student){
+		if(student.getPassingExams().contains(this)){
+			student.getPassingExams().remove(this);
+		}
+		students.remove(student);
 	}
 }

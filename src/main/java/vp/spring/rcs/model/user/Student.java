@@ -10,9 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 
 import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Subject_presence;
+import vp.spring.rcs.model.Transactions;
 import vp.spring.rcs.model.user.SecurityUser;
 
 @Entity
@@ -33,6 +36,11 @@ public class Student extends SecurityUser {
     @JoinTable(name = "securityUser_subjectPresence", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_presence> subjectPresences = new ArrayList<Subject_presence>();
 
+	@OneToMany(fetch=FetchType.EAGER)
+	List<Transactions> transactions = new ArrayList<Transactions>();
+	
+//	uraditi m2m subject_presence, student_document o2m, passed_exams o2m namestiti getere setere za sve u svemu(add/remove)
+	
 	public Student(String username, String password, String firstName, String lastName, int citizenID, String indexNumber, float balance) {
 		super(username, password, firstName, lastName);
 		this.citizenID = citizenID;
@@ -84,6 +92,37 @@ public class Student extends SecurityUser {
 
 	public void setSubjectPresences(List<Subject_presence> subjectPresences) {
 		this.subjectPresences = subjectPresences;
+	}
+	
+	public List<Transactions> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transactions> transactions) {
+		this.transactions = transactions;
+	}
+	
+	public void addTransaction(Transactions transaction){
+		this.transactions.add(transaction);
+	}
+	
+	public void removeTransaction(Transactions transaction){
+		transactions.remove(transaction);
+	}
+	
+	public void addPassingExam(Passing_exams passingExam){
+		this.passingExams.add(passingExam);
+		
+		if(!passingExam.getStudents().contains(this)){
+			passingExam.addStudent(this);
+		}
+	}
+	
+	public void removePassingExam(Passing_exams passingExam){
+		if(passingExam.getStudents().contains(this)){
+			passingExam.getStudents().remove(this);
+		}
+		passingExams.remove(passingExam);
 	}
 	
 }
