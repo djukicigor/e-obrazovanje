@@ -28,6 +28,7 @@ public class Passing_exams {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Teacher teacher;
 	

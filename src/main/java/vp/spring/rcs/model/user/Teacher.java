@@ -10,9 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
+import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Subject_lecture;
 import vp.spring.rcs.model.Subject_presence;
+import vp.spring.rcs.model.Transactions;
 
 @Entity
 public class Teacher extends SecurityUser {
@@ -24,8 +27,11 @@ public class Teacher extends SecurityUser {
 	
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_subjectLecture", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
-	List<Subject_lecture> subjectsLecture = new ArrayList<Subject_lecture>();
+	List<Subject_lecture> subjectLectures = new ArrayList<Subject_lecture>();
 	
+	/*@OneToMany(fetch=FetchType.EAGER)
+	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
+	*/
 //	uraditi subject_lecture m2m , passing_exams o2m... namestiti getere setere za sve u svemu(add/remove)
 	
 	public Teacher(String username, String password, String firstName, String lastName, int citizenID, String role) {
@@ -55,12 +61,46 @@ public class Teacher extends SecurityUser {
 		this.role = role;
 	}
 	
-	public List<Subject_lecture> getSubjectPresences() {
-		return subjectsLecture;
+	public List<Subject_lecture> getSubjectLectures() {
+		return subjectLectures;
 	}
 
-	public void setSubjectPresences(List<Subject_lecture> subjectsLecture) {
-		this.subjectsLecture = subjectsLecture;
+	public void setSubjectLectures(List<Subject_lecture> subjectsLecture) {
+		this.subjectLectures = subjectsLecture;
+	}
+	
+	public void addSubjectLecture(Subject_lecture subjectLecture){
+		this.subjectLectures.add(subjectLecture);
+		
+		if(!subjectLecture.getTeachers().contains(this)){
+			subjectLecture.addTeacher(this);
+		}
+	}
+	
+	public void removeSubjectLecture(Subject_lecture subjectLecture){
+		if(subjectLecture.getTeachers().contains(this)){
+			subjectLecture.getTeachers().remove(this);
+		}
+		//passingExams.remove(subjectLecture);
+	}
+	
+	
+	/*public List<Passing_exams> getPassingExams() {
+		return passingExams;
 	}
 
+	public void setPassingExams(List<Passing_exams> passingExams) {
+		this.passingExams = passingExams;
+	}
+
+	public void addPassingExam(Passing_exams passingExam){
+		this.passingExams.add(passingExam);
+	}
+	
+	public void removePassingExam(Passing_exams passingExam){
+		passingExams.remove(passingExam);
+		
+		
+	}
+*/
 }
