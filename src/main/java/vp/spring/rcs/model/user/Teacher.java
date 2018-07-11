@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Subject_lecture;
 
@@ -27,7 +29,12 @@ public class Teacher extends SecurityUser {
     @JoinTable(name = "securityUser_subjectLecture", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_lecture> subjectLectures = new ArrayList<Subject_lecture>();
 	
-	@OneToMany(fetch=FetchType.EAGER)
+//	@OneToMany(fetch=FetchType.EAGER)
+//	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
+	
+	@JsonIgnoreProperties("teacher")
+	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
 	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
 	
 //	uraditi subject_lecture m2m , passing_exams o2m... namestiti getere setere za sve u svemu(add/remove)
@@ -97,8 +104,6 @@ public class Teacher extends SecurityUser {
 	
 	public void removePassingExam(Passing_exams passingExam){
 		passingExams.remove(passingExam);
-		
-		
 	}
 
 }

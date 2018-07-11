@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.model.user.Teacher;
@@ -28,10 +29,11 @@ public class Passing_exams {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Teacher teacher;
 	
+//	@JsonIgnoreProperties("passingExams")
 	@JsonIgnore
 	@ManyToMany(mappedBy="passingExams", fetch=FetchType.LAZY)
 	List<Student> students = new ArrayList<Student>();
