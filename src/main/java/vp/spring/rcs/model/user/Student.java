@@ -12,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import vp.spring.rcs.model.Passed_exams;
 import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Student_documents;
@@ -29,6 +31,7 @@ public class Student extends SecurityUser {
 	
 	private float balance;
 	
+	@JsonIgnoreProperties({"students", "teacher.passingExams"})
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
 	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
