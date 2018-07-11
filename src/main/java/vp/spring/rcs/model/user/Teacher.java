@@ -14,8 +14,6 @@ import javax.persistence.OneToMany;
 
 import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Subject_lecture;
-import vp.spring.rcs.model.Subject_presence;
-import vp.spring.rcs.model.Transactions;
 
 @Entity
 public class Teacher extends SecurityUser {
@@ -29,9 +27,9 @@ public class Teacher extends SecurityUser {
     @JoinTable(name = "securityUser_subjectLecture", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_lecture> subjectLectures = new ArrayList<Subject_lecture>();
 	
-	/*@OneToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
-	*/
+	
 //	uraditi subject_lecture m2m , passing_exams o2m... namestiti getere setere za sve u svemu(add/remove)
 	
 	public Teacher(String username, String password, String firstName, String lastName, int citizenID, String role) {
@@ -85,7 +83,7 @@ public class Teacher extends SecurityUser {
 	}
 	
 	
-	/*public List<Passing_exams> getPassingExams() {
+	public List<Passing_exams> getPassingExams() {
 		return passingExams;
 	}
 
@@ -102,5 +100,5 @@ public class Teacher extends SecurityUser {
 		
 		
 	}
-*/
+
 }

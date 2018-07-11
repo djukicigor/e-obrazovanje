@@ -171,9 +171,9 @@ public class TestData {
 		student1.addPassed_exams(passedExam1);
 		student1.addSubjectPresence(subPres1);
 		student1.addStudent_documents(studDoc1);
-		studentService.save(student1);
 		teacher1.addSubjectLecture(subLec1);
 		teacherService.save(teacher1);
+//		studentService.save(student1);
 		
 		SecurityAuthority authority2 = new SecurityAuthority("Student");
 		securityAuthorityService.save(authority2);
@@ -200,10 +200,10 @@ public class TestData {
 		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher2);
 
-		Teacher teacher3 = new Teacher("jovana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
+		Teacher teacher3 = new Teacher("jovana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Jovana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher3);
 
-		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
+		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Ivana", "Kusljic", 4848552, "uloga");
 		teacherService.save(teacher4);
 
 		Subject subject2 = new Subject("matematika", "opis");
@@ -211,19 +211,6 @@ public class TestData {
 
 		Subject subject3 = new Subject("engleski", "opis");
 		subjectService.save(subject3);
-
-		List<Student> students = new ArrayList<>();
-		students.add(student1);
-		students.add(student2);
-		students.add(student3);
-		students.add(student4);
-		
-		List<Student> students2 = new ArrayList<>();
-		students2.add(student1);
-		students2.add(student2);
-		students2.add(student3);
-		students2.add(student4);
-		
 		
 		
 		Passed_exams passedExam2 = new Passed_exams(9, passingExam1, student2);
@@ -231,7 +218,6 @@ public class TestData {
 		
 		Passed_exams passedExam3 = new Passed_exams(8, passingExam1, student3);
 		passedExamsService.save(passedExam3);
-		
 		
 		
 		Student_documents studDoc2 = new Student_documents("slika", student2);

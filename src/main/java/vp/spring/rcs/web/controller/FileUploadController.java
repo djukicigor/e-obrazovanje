@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FileUploadController {
 
 	//destination folder to upload the files
-	private static String UPLOAD_FOLDER = Paths.get("").toAbsolutePath().toString() + "/documents/";
+	private static String UPLOAD_FOLDER = Paths.get("").toAbsolutePath().toString() + "//documents//";
 
 	@RequestMapping("/api/students/upload")
 	public ModelAndView showUpload() {
