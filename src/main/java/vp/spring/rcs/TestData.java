@@ -137,14 +137,8 @@ public class TestData {
 		recordService.save(interstellarSpace);
 
 		SecurityUser user1 = new SecurityUser("admin", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
-		securityUserService.save(user1);
-
-		SecurityAuthority authority1 = new SecurityAuthority("admin");
-		securityAuthorityService.save(authority1);
-
+		SecurityAuthority authority1 = new SecurityAuthority("ROLE_ADMIN");
 		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(user1, authority1);
-		securityUserAuthorityService.save(userAuthority1);
-
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
 		Subject subject1 = new Subject("srpski", "opis");
@@ -154,9 +148,10 @@ public class TestData {
 		Subject_presence subPres1 = new Subject_presence(subject1);
 		Student_documents studDoc1 = new Student_documents("slika", student1);
 		Subject_lecture subLec1 = new Subject_lecture(subject1);
-		
-		
-		
+
+		securityUserService.save(user1);
+		securityAuthorityService.save(authority1);
+		securityUserAuthorityService.save(userAuthority1);
 		subjectService.save(subject1);
 		teacherService.save(teacher1);
 		passingExamsService.save(passingExam1);
@@ -171,10 +166,10 @@ public class TestData {
 		student1.addPassed_exams(passedExam1);
 		student1.addSubjectPresence(subPres1);
 		student1.addStudent_documents(studDoc1);
+		studentService.save(student1);
 		teacher1.addSubjectLecture(subLec1);
 		teacher1.addPassingExam(passingExam1);
 		teacherService.save(teacher1);
-//		studentService.save(student1);
 		
 		SecurityAuthority authority2 = new SecurityAuthority("Student");
 		securityAuthorityService.save(authority2);
@@ -229,28 +224,20 @@ public class TestData {
 		
 		Student_documents studDoc4 = new Student_documents("slika", student4);
 		studentDocumentsService.save(studDoc4);
-		
-		List<Teacher> teachers = new ArrayList<>();
-		teachers.add(teacher1);
-		teachers.add(teacher2);
-		teachers.add(teacher3);
-		teachers.add(teacher4);
 
+		Transactions transaction2 = new Transactions(12000, student1);
+		transactionsService.save(transaction2);
 		
+		Transactions transaction3 = new Transactions(15000, student2);
+		transactionsService.save(transaction3);
 		
-//		Transactions transaction2 = new Transactions(12000);
-//		transactionsService.save(transaction2);
+		Transactions transaction4 = new Transactions(20000, student3);
+		transactionsService.save(transaction4);
 //		
-//		Transactions transaction3 = new Transactions(15000);
-//		transactionsService.save(transaction3);
-//		
-//		Transactions transaction4 = new Transactions(20000);
-//		transactionsService.save(transaction4);
-		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
+			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passingExam1));
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student1));
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(teacher1));
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subject1));
