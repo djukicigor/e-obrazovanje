@@ -20,11 +20,13 @@ import { CanActivateAuthGuard } from './security/can-activate-auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from 'app/security/token-interceptor.service';
 import { JwtUtilsService } from 'app/security/jwt-utils.service';
+import { UserService } from './main/user.service';
+import { SubjectListComponent } from './subject-list/subject-list.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
-  { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },  
-  { path: 'login', component: LoginComponent},  
+  { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     MainComponent,
     RecordDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    SubjectListComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,10 +60,11 @@ const appRoutes: Routes = [
       useClass: TokenInterceptorService,
       multi: true
     },
-    RecordService, 
+    RecordService,
     AuthenticationService,
     CanActivateAuthGuard,
-    JwtUtilsService
+    JwtUtilsService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
