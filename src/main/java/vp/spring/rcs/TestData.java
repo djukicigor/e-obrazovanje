@@ -264,15 +264,15 @@ public class TestData {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(teacher1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subject1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passingExam1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passedExam1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(studDoc1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subLec1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subPres1));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(transaction1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(teacher1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subject1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passingExam1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passedExam1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(studDoc1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subLec1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subPres1));
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(transaction1));
 
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
