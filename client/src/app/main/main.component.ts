@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Record, AuthorInterface, Order, User } from '../common.models';
+import { Record, AuthorInterface, Order, User, SubjectPresencesInterface } from '../common.models';
 
 import * as _ from 'lodash';
 
@@ -20,9 +20,9 @@ export class MainComponent implements OnInit {
   public priceFilter: PriceLimits;
   public authors: AuthorInterface[];
   public user: User;
+  public subjectPresences: SubjectPresencesInterface[];
 
   constructor(private recordService: RecordService, private userService:  UserService) {
-    console.log(userService.getUser(localStorage.username));
     recordService.getRecords();
     this.priceFilter = {
       lowest:0,
@@ -40,8 +40,8 @@ export class MainComponent implements OnInit {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.userService.getUser(currentUser.username)
       .subscribe((user: User) => {
-        console.log(user)
-        this.user = user
+        this.user = user;
+        this.subjectPresences = user.subjectPresences;
       })
     this.recordService.
       getRecords(order,this.priceFilter.lowest,this.priceFilter.highest).

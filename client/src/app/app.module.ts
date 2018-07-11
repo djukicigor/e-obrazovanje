@@ -22,9 +22,12 @@ import { TokenInterceptorService } from 'app/security/token-interceptor.service'
 import { JwtUtilsService } from 'app/security/jwt-utils.service';
 import { UserService } from './main/user.service';
 import { SubjectListComponent } from './subject-list/subject-list.component';
+import { SubjectComponent } from './subject/subject.component';
+import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'subject/:id', component: SubjectDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -44,6 +47,8 @@ const appRoutes: Routes = [
     RecordDetailsComponent,
     LoginComponent,
     SubjectListComponent,
+    SubjectComponent,
+    SubjectDetailsComponent,
   ],
   imports: [
     BrowserModule,

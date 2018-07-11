@@ -10,7 +10,7 @@ export class User implements UserInterface {
 	public balance: number;
 	public userAuthorities: AuthorityInterface[];
 	public passingExams: ExamInterface[];
-	public subjectPresences: SubjectInterface[];
+	public subjectPresences: SubjectPresencesInterface[];
 	public transactions: TransactionInterface[];
 
 	constructor(userCfg:UserInterface) {
@@ -40,7 +40,7 @@ interface UserInterface {
 	balance: number;
 	userAuthorities: AuthorityInterface[];
 	passingExams: ExamInterface[];
-	subjectPresences: SubjectInterface[];
+	subjectPresences: SubjectPresencesInterface[];
 	transactions: TransactionInterface[];
 }
 
@@ -49,14 +49,14 @@ interface AuthorityInterface {
 	authority: object;
 }
 
-interface ExamInterface {
+export interface ExamInterface {
 	id?: number;
 	date: Date;
 	subject: SubjectInterface;
 	teacher: UserInterface;
 }
 
-interface SubjectInterface {
+export interface SubjectInterface {
 	id?: number;
 	name: string;
 	description: string;
@@ -65,6 +65,11 @@ interface SubjectInterface {
 interface TransactionInterface {
 	id?: number;
 	amount: number;
+}
+
+export interface SubjectPresencesInterface {
+	id?: number;
+	subjects: SubjectInterface[];
 }
 
 export class Record implements RecordInterface{
