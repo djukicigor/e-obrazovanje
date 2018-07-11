@@ -64,4 +64,19 @@ public class Subject_presence {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
+	
+	public void addStudent(Student student){
+		this.students.add(student);
+		
+		if(!student.getSubjectPresences().contains(this)){
+			student.addSubjectPresence(this);
+		}
+	}
+	
+	public void removeStudent(Student student){
+		if(student.getSubjectPresences().contains(this)){
+			student.getSubjectPresences().remove(this);
+		}
+		students.remove(student);
+	}
 }
