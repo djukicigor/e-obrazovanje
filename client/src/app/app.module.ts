@@ -26,15 +26,17 @@ import { SubjectComponent } from './subject/subject.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
 import { SubjectService } from './main/subject.service';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
+import { TransactionsComponent } from './transactions/transactions.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'subject/:id', component: SubjectDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'subject/edit/:id', component: EditSubjectComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'transactions', component: TransactionsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -53,6 +55,7 @@ const appRoutes: Routes = [
     SubjectComponent,
     SubjectDetailsComponent,
     EditSubjectComponent,
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,

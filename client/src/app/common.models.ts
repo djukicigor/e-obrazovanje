@@ -62,7 +62,7 @@ export interface SubjectInterface {
 	description: string;
 }
 
-interface TransactionInterface {
+export interface TransactionInterface {
 	id?: number;
 	amount: number;
 }
