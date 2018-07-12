@@ -168,12 +168,14 @@ public class TestData {
 		Subject subject1 = new Subject("srpski", "opis");
 		Subject subject2 = new Subject("matematika", "opis");
 		Subject subject3 = new Subject("engleski", "opis");
+		Subject subject4 = new Subject("xml", "opis");
+		Subject subject5 = new Subject("web", "opis");
 		
-		Passing_exams passingExam1 = new Passing_exams(new Date(), subject3, teacher1);
+		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
 		Passing_exams passingExam2 = new Passing_exams(new Date(), subject2, teacher2);
 		Passing_exams passingExam3 = new Passing_exams(new Date(), subject3, teacher3);
-		Passing_exams passingExam4 = new Passing_exams(new Date(), subject1, teacher1);
-		Passing_exams passingExam5 = new Passing_exams(new Date(), subject2, teacher2);
+		Passing_exams passingExam4 = new Passing_exams(new Date(), subject4, teacher1);
+		Passing_exams passingExam5 = new Passing_exams(new Date(), subject5, teacher2);
 		
 		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
 		Passed_exams passedExam2 = new Passed_exams(9, passingExam2, student2);
@@ -188,8 +190,8 @@ public class TestData {
 		Subject_presence subPres1 = new Subject_presence(subject1);
 		Subject_presence subPres2 = new Subject_presence(subject2);
 		Subject_presence subPres3 = new Subject_presence(subject3);
-		Subject_presence subPres4 = new Subject_presence(subject1);
-		Subject_presence subPres5 = new Subject_presence(subject2);
+		Subject_presence subPres4 = new Subject_presence(subject4);
+		Subject_presence subPres5 = new Subject_presence(subject5);
 		
 		Student_documents studDoc1 = new Student_documents("slika", student1);
 		Student_documents studDoc2 = new Student_documents("slika", student2);
@@ -211,6 +213,8 @@ public class TestData {
 		subjectService.save(subject1);
 		subjectService.save(subject2);
 		subjectService.save(subject3);
+		subjectService.save(subject4);
+		subjectService.save(subject5);
 		
 		teacherService.save(teacher1);
 		teacherService.save(teacher2);
@@ -264,7 +268,6 @@ public class TestData {
 		subjectLectureService.save(subLec5);
 
 		
-		student1.addPassingExam(passingExam1);
 		student1.addPassingExam(passingExam2);
 		student1.addTransaction(transaction1);
 		student1.addPassed_exams(passedExam1);
@@ -273,22 +276,16 @@ public class TestData {
 		student1.addSubjectPresence(subPres3);
 		student1.addStudent_documents(studDoc1);
 		
-		student2.addPassingExam(passingExam2);
-		student2.addPassingExam(passingExam3);
 		student2.addTransaction(transaction2);
 		student2.addPassed_exams(passedExam2);
 		student2.addSubjectPresence(subPres2);
 		student2.addStudent_documents(studDoc2);
 		
-		student3.addPassingExam(passingExam3);
-		student3.addPassingExam(passingExam2);
 		student3.addTransaction(transaction3);
 		student3.addPassed_exams(passedExam3);
 		student3.addSubjectPresence(subPres3);
 		student3.addStudent_documents(studDoc3);
 		
-		student4.addPassingExam(passingExam1);
-		student4.addPassingExam(passingExam2);
 		student4.addTransaction(transaction4);
 		student4.addPassed_exams(passedExam4);
 		student4.addSubjectPresence(subPres4);
@@ -308,12 +305,12 @@ public class TestData {
 		teacher4.addSubjectLecture(subLec2);
 		
 //		Printing out objects as JSON for testing
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passingExam1));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
+//		ObjectMapper mapper = new ObjectMapper();
+//		try {
+//			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passingExam1));
+//		} catch (JsonProcessingException e) {
+//			e.printStackTrace();
+//		}
 		
 		studentService.save(student1);
 		studentService.save(student2);

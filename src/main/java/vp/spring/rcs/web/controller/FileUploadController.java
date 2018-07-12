@@ -15,6 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import vp.spring.rcs.model.Student_documents;
 import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.service.StudentDocumentsService;
@@ -54,6 +57,15 @@ public class FileUploadController {
 
 			student.addStudent_documents(document);
 			studentService.save(student);
+			//		Printing out objects as JSON for testing
+			ObjectMapper mapper = new ObjectMapper();
+			try {
+				System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(student));
+				System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(document));
+			} catch (JsonProcessingException e) {
+				e.printStackTrace();
+			}
+			
 
 		} catch (IOException e) {
 			e.printStackTrace();

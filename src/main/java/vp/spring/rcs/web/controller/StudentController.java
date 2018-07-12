@@ -85,30 +85,25 @@ public class StudentController {
 	public ResponseEntity<List<Passing_exams>> getExams(@PathVariable Long id) {
 		Student student = studentService.findOne(id);
 		List<Subject_presence> subjects = student.getSubjectPresences();
+		List<Passing_exams> alreadyPassingExams = student.getPassingExams();
 		List<Passing_exams> passingExams = passingExamsService.findAll();
 		List<Passing_exams> fittingExams = new ArrayList<Passing_exams>();
 		
 		for (Passing_exams exam : passingExams ) {
 		    boolean fits = false;
 		    for (Subject_presence subject : subjects) {
-		    	System.out.println(exam.getSubject().getId());
-		    	System.out.println(subject.getSubject().getId());
 		    	if (exam.getSubject().getId() == subject.getSubject().getId()) {
 		    		fits = true;
+		    		for (Passing_exams passingExam : alreadyPassingExams) {
+		    			if(passingExam.getId() == exam.getSubject().getId()) {
+		    				fits = false;
+		    			}
+		    		}
 		    	}
 		    }
 		    if (fits) {
 		    	fittingExams.add(exam);
 		    }
-		}
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subjects));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(passingExams));
-			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(fittingExams));
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return new ResponseEntity<>(fittingExams, HttpStatus.OK); 
 	}
