@@ -29,6 +29,7 @@ public class Passing_exams {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Teacher teacher;
 //	@ManyToMany(mappedBy="passingExams1", fetch=FetchType.EAGER)

@@ -27,12 +27,12 @@ public class Teacher extends SecurityUser {
 	
 	private String role;
 	
-	@JsonIgnoreProperties("teachers")
+//	@JsonIgnoreProperties("teachers")
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_subjectLecture", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_lecture> subjectLectures = new ArrayList<Subject_lecture>();
 	
-	@JsonIgnoreProperties("teacher")
+//	@JsonIgnoreProperties("teacher")
 	@OneToMany(fetch=FetchType.LAZY)
 	List<Passing_exams> passingExams1 = new ArrayList<Passing_exams>();
 	
