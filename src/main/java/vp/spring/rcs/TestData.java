@@ -153,13 +153,22 @@ public class TestData {
 		Student student4 = new Student("boban", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Boban", "Petrovic", 123456789, "SF130", 10000);
 		
 		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
-		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Kusljic", 4848552, "uloga");
-		Teacher teacher3 = new Teacher("jovana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Jovana", "Kusljic", 4848552, "uloga");
-		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Ivana", "Kusljic", 4848552, "uloga");
+		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Dajanic", 4848552, "uloga");
+		Teacher teacher3 = new Teacher("jovana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Jovana", "Jovanic", 4848552, "uloga");
+		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Ivana", "Ivanic", 4848552, "uloga");
 		
 		
 		Subject subject1 = new Subject("srpski", "opis");
+		Subject subject2 = new Subject("matematika", "opis");
+		Subject subject3 = new Subject("engleski", "opis");
+		
 		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
+		Passing_exams passingExam2 = new Passing_exams(new Date(), subject2, teacher2);
+		Passing_exams passingExam3 = new Passing_exams(new Date(), subject3, teacher3);
+		Passing_exams passingExam4 = new Passing_exams(new Date(), subject1, teacher1);
+		Passing_exams passingExam5 = new Passing_exams(new Date(), subject2, teacher2);
+		
+		
 		Transactions transaction1 = new Transactions(45678, student1);
 		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
 		Subject_presence subPres1 = new Subject_presence(subject1);
@@ -179,6 +188,9 @@ public class TestData {
 		securityUserAuthorityService.save(userAuthority3);
 		
 		subjectService.save(subject1);
+		subjectService.save(subject2);
+		subjectService.save(subject3);
+		
 		teacherService.save(teacher1);
 		teacherService.save(teacher2);
 		teacherService.save(teacher3);
@@ -190,12 +202,20 @@ public class TestData {
 		studentService.save(student4);
 		
 		passingExamsService.save(passingExam1);
+		passingExamsService.save(passingExam2);
+		passingExamsService.save(passingExam3);
+		passingExamsService.save(passingExam4);
+		
+		
 		passedExamsService.save(passedExam1);
 		subjectPresenceService.save(subPres1);
 		transactionsService.save(transaction1);
 		studentDocumentsService.save(studDoc1);
 		subjectLectureService.save(subLec1);
+		
 		student1.addPassingExam(passingExam1);
+		student1.addPassingExam(passingExam2);
+		student2.addPassingExam(passingExam2);
 		student1.addTransaction(transaction1);
 		student1.addPassed_exams(passedExam1);
 		student1.addSubjectPresence(subPres1);
@@ -206,23 +226,6 @@ public class TestData {
 		teacherService.save(teacher1);
 		
 		
-		
-
-		
-
-		
-
-		
-
-
-
-		
-
-		Subject subject2 = new Subject("matematika", "opis");
-		subjectService.save(subject2);
-
-		Subject subject3 = new Subject("engleski", "opis");
-		subjectService.save(subject3);
 		
 		
 		Passed_exams passedExam2 = new Passed_exams(9, passingExam1, student2);
