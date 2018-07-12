@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import vp.spring.rcs.model.Passing_exams;
+import vp.spring.rcs.model.Student_documents;
 import vp.spring.rcs.model.Subject_lecture;
 
 @Entity
@@ -37,9 +38,11 @@ public class Teacher extends SecurityUser {
 	
 //	@JsonIgnoreProperties("teacher")
 	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-    @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
-	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
+	@OneToMany(fetch=FetchType.LAZY)
+	List<Passing_exams> passingExams1 = new ArrayList<Passing_exams>();
+//	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+//    @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
+//	List<Passing_exams> passingExams1 = new ArrayList<Passing_exams>();
 	
 //	uraditi subject_lecture m2m , passing_exams o2m... namestiti getere setere za sve u svemu(add/remove)
 	
@@ -95,19 +98,19 @@ public class Teacher extends SecurityUser {
 	
 	
 	public List<Passing_exams> getPassingExams() {
-		return passingExams;
+		return passingExams1;
 	}
 
 	public void setPassingExams(List<Passing_exams> passingExams) {
-		this.passingExams = passingExams;
+		this.passingExams1 = passingExams;
 	}
 
 	public void addPassingExam(Passing_exams passingExam){
-		this.passingExams.add(passingExam);
+		this.passingExams1.add(passingExam);
 	}
 	
 	public void removePassingExam(Passing_exams passingExam){
-		passingExams.remove(passingExam);
+		passingExams1.remove(passingExam);
 	}
 
 }

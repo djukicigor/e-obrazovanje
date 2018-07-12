@@ -21,5 +21,5 @@
       </li>
     </ul>
   </div>
-  <button class="btn btn-warning" (click)="edit(subject.id)">edit</button>
+  <button *ngIf="isTeacher()" class="btn btn-warning" (click)="edit()">edit</button>
 </div>

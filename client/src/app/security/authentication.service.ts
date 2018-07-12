@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { JwtUtilsService } from 'app/security/jwt-utils.service';
+import { UserService } from '../main/user.service';
+import { User } from '../common.models';
 
 
 @Injectable()
@@ -12,7 +14,7 @@ export class AuthenticationService {
 
   private readonly loginPath = 'http://localhost:8080/api/login'
 
-  constructor(private http: HttpClient, private jwtUtilsService: JwtUtilsService) { }
+  constructor(private http: HttpClient, private jwtUtilsService: JwtUtilsService, private userService:  UserService) { }
 
   login(username: string, password: string): Observable<boolean> {
     var headers: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -62,6 +64,20 @@ export class AuthenticationService {
     }
     else{
       return undefined;
+    }
+  }
+
+  isTeacher() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser.roles[0] === "ROLE_TEACHER" || currentUser.roles[0] === "admin") {
+      return true;
+    }
+  }
+
+  isStudent() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser.roles[0] === "ROLE_STUDENT" || currentUser.roles[0] === "admin") {
+      return true;
     }
   }
 }

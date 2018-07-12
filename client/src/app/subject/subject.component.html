@@ -5,6 +5,6 @@
 	{{subject.description}}
 </td>
 <td>
-	<button class="btn btn-warning" (click)="edit(subject.id)">edit</button>
+	<button *ngIf="isTeacher()" class="btn btn-warning" (click)="edit(subject.id)">edit</button>
 	<button class="btn btn-primary" (click)="details(subject.id)">details</button>
 </td>

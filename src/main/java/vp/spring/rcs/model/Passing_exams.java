@@ -29,16 +29,19 @@ public class Passing_exams {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Teacher teacher;
+//	@ManyToMany(mappedBy="passingExams1", fetch=FetchType.EAGER)
+//	List<Teacher> teachers = new ArrayList<Teacher>();
 
 	@ManyToMany(mappedBy="passingExams", fetch=FetchType.EAGER)
 	List<Student> students = new ArrayList<Student>();
 	
-	public Passing_exams(Date date, Subject subject) {
+	public Passing_exams(Date date, Subject subject, Teacher teacher) {
 		super();
 		this.date = date;
 		this.subject = subject;
+		this.teacher = teacher;
 	}
 	
 	public Passing_exams() {
@@ -59,14 +62,6 @@ public class Passing_exams {
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public Teacher getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
 	}
 
 	public Subject getSubject() {
@@ -99,4 +94,20 @@ public class Passing_exams {
 		}
 		students.remove(student);
 	}
+	
+//	public List<Teacher> getTeachers() {
+//		return teachers;
+//	}
+//
+//	public void setTeachers(List<Teacher> teachers) {
+//		this.teachers = teachers;
+//	}
+//
+//	public void addTeacher(Teacher teacher){
+//		this.teachers.add(teacher);
+//	}
+//	
+//	public void removeTeacher(Teacher teacher){
+//		teachers.remove(teacher);
+//	}
 }
