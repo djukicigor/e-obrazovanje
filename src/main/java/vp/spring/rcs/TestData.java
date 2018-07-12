@@ -137,6 +137,9 @@ public class TestData {
 		recordService.save(interstellarSpace);
 
 		
+		
+		
+		
 		SecurityUser user1 = new SecurityUser("admin", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
 		SecurityAuthority authority1 = new SecurityAuthority("ROLE_ADMIN");
 		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(user1, authority1);
@@ -165,7 +168,6 @@ public class TestData {
 		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Ivana", "Ivanic", 4848552, "uloga");
 		SecurityUserAuthority teacherAuthority4 = new SecurityUserAuthority(teacher4, authority2);
 		
-		
 		Subject subject1 = new Subject("srpski", "opis");
 		Subject subject2 = new Subject("matematika", "opis");
 		Subject subject3 = new Subject("engleski", "opis");
@@ -186,10 +188,23 @@ public class TestData {
 		Transactions transaction3 = new Transactions(15000, student3);
 		Transactions transaction4 = new Transactions(20000, student4);
 		
-		
 		Subject_presence subPres1 = new Subject_presence(subject1);
+		Subject_presence subPres2 = new Subject_presence(subject2);
+		Subject_presence subPres3 = new Subject_presence(subject3);
+		Subject_presence subPres4 = new Subject_presence(subject1);
+		Subject_presence subPres5 = new Subject_presence(subject2);
+		
 		Student_documents studDoc1 = new Student_documents("slika", student1);
+		Student_documents studDoc2 = new Student_documents("slika", student2);
+		Student_documents studDoc3 = new Student_documents("slika", student3);
+		Student_documents studDoc4 = new Student_documents("slika", student4);
+		
 		Subject_lecture subLec1 = new Subject_lecture(subject1);
+		Subject_lecture subLec2 = new Subject_lecture(subject2);
+		Subject_lecture subLec3 = new Subject_lecture(subject3);
+		Subject_lecture subLec4 = new Subject_lecture(subject1);
+		Subject_lecture subLec5 = new Subject_lecture(subject2);
+		
 
 		
 		
@@ -242,8 +257,23 @@ public class TestData {
 		transactionsService.save(transaction4);
 		
 		subjectPresenceService.save(subPres1);
+		subjectPresenceService.save(subPres2);
+		subjectPresenceService.save(subPres3);
+		subjectPresenceService.save(subPres4);
+		subjectPresenceService.save(subPres5);
+		
 		studentDocumentsService.save(studDoc1);
+		studentDocumentsService.save(studDoc2);
+		studentDocumentsService.save(studDoc3);
+		studentDocumentsService.save(studDoc4);
+		
 		subjectLectureService.save(subLec1);
+		subjectLectureService.save(subLec2);
+		subjectLectureService.save(subLec3);
+		subjectLectureService.save(subLec4);
+		subjectLectureService.save(subLec5);
+		
+		
 		
 		student1.addPassingExam(passingExam1);
 		student1.addPassingExam(passingExam2);
@@ -263,14 +293,7 @@ public class TestData {
 		
 		
 		
-		Student_documents studDoc2 = new Student_documents("slika", student2);
-		studentDocumentsService.save(studDoc2);
 		
-		Student_documents studDoc3 = new Student_documents("slika", student3);
-		studentDocumentsService.save(studDoc3);
-		
-		Student_documents studDoc4 = new Student_documents("slika", student4);
-		studentDocumentsService.save(studDoc4);
 
 		
 //		
