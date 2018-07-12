@@ -168,7 +168,7 @@ public class TestData {
 		student1.addStudent_documents(studDoc1);
 		studentService.save(student1);
 		teacher1.addSubjectLecture(subLec1);
-		teacher1.addPassingExam(passingExam1);
+//		teacher1.addPassingExam(passingExam1);
 		teacherService.save(teacher1);
 		
 		SecurityAuthority authority2 = new SecurityAuthority("Student");
