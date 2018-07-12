@@ -72,6 +72,14 @@ public class Passing_exams {
 		this.subject= subject;
 	}
 
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
 	public List<Student> getStudents() {
 		return students;
 	}
