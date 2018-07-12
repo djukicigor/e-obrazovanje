@@ -27,12 +27,14 @@ import { SubjectDetailsComponent } from './subject-details/subject-details.compo
 import { SubjectService } from './main/subject.service';
 import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'subject/:id', component: SubjectDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'subject/edit/:id', component: EditSubjectComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'transactions', component: TransactionsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -56,6 +58,7 @@ const appRoutes: Routes = [
     SubjectDetailsComponent,
     EditSubjectComponent,
     TransactionsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
