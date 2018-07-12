@@ -2,19 +2,19 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { User } from '../common.models';
 import { UserService } from '../main/user.service';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../security/authentication.service';
+import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProfileComponent implements OnInit {
+export class EditProfileComponent implements OnInit {
   public user: User;
   public isDataAvailable: Boolean;
 
-  constructor(private userService:  UserService, private router: Router, private authService: AuthenticationService) {
+  constructor(private userService:  UserService, private router: Router, private location: Location) {
     this.loadData();
   }
 
@@ -31,12 +31,12 @@ export class ProfileComponent implements OnInit {
       })
   }
 
-  edit = function () {
-    this.router.navigate(['/profile/edit']);
+  goBack(): void {
+    this.location.back();
   }
 
-  isTeacher() {
-    return this.authService.isTeacher()
+  save(): void {
+    this.userService.saveUser(this.user)
+      .subscribe(() => this.goBack());
   }
-
 }
