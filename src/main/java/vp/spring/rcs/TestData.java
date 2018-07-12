@@ -277,12 +277,37 @@ public class TestData {
 		
 		student1.addPassingExam(passingExam1);
 		student1.addPassingExam(passingExam2);
-		student2.addPassingExam(passingExam2);
 		student1.addTransaction(transaction1);
 		student1.addPassed_exams(passedExam1);
 		student1.addSubjectPresence(subPres1);
 		student1.addStudent_documents(studDoc1);
+		
+		student2.addPassingExam(passingExam2);
+		student2.addPassingExam(passingExam3);
+		student2.addTransaction(transaction2);
+		student2.addPassed_exams(passedExam2);
+		student2.addSubjectPresence(subPres2);
+		student2.addStudent_documents(studDoc2);
+		
+		student3.addPassingExam(passingExam3);
+		student3.addPassingExam(passingExam4);
+		student3.addTransaction(transaction3);
+		student3.addPassed_exams(passedExam3);
+		student3.addSubjectPresence(subPres3);
+		student3.addStudent_documents(studDoc3);
+		
+		student4.addPassingExam(passingExam4);
+		student4.addPassingExam(passingExam3);
+		student4.addTransaction(transaction4);
+		student4.addPassed_exams(passedExam4);
+		student4.addSubjectPresence(subPres4);
+		student4.addStudent_documents(studDoc4);
+		
 		studentService.save(student1);
+		studentService.save(student2);
+		studentService.save(student3);
+		studentService.save(student4);
+		
 		teacher1.addSubjectLecture(subLec1);
 //		teacher1.addPassingExam(passingExam1);
 		teacherService.save(teacher1);
