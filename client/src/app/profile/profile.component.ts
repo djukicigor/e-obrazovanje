@@ -40,6 +40,10 @@ export class ProfileComponent implements OnInit {
     return this.authService.isTeacher()
   }
 
+  isStudent() {
+    return this.authService.isStudent();
+  }
+
   save() {
     console.log(this.uploadme)
   }
