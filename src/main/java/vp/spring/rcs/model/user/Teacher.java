@@ -26,7 +26,8 @@ public class Teacher extends SecurityUser {
 	
 	private String role;
 	
-	@JsonIgnoreProperties("teachers")
+//	@JsonIgnoreProperties("teachers")
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_subjectLecture", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_lecture> subjectLectures = new ArrayList<Subject_lecture>();
@@ -34,7 +35,8 @@ public class Teacher extends SecurityUser {
 //	@OneToMany(fetch=FetchType.EAGER)
 //	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
 	
-	@JsonIgnoreProperties("teacher")
+//	@JsonIgnoreProperties("teacher")
+	@JsonIgnore
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
 	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();

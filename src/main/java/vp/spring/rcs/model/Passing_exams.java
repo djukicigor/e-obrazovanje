@@ -35,11 +35,10 @@ public class Passing_exams {
 	@ManyToMany(mappedBy="passingExams", fetch=FetchType.EAGER)
 	List<Student> students = new ArrayList<Student>();
 	
-	public Passing_exams(Date date, Subject subject, Teacher teacher) {
+	public Passing_exams(Date date, Subject subject) {
 		super();
 		this.date = date;
 		this.subject = subject;
-		this.teacher = teacher;
 	}
 	
 	public Passing_exams() {

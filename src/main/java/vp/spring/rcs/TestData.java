@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -162,20 +163,17 @@ public class TestData {
 		Subject subject2 = new Subject("matematika", "opis");
 		Subject subject3 = new Subject("engleski", "opis");
 		
-		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
-		Passing_exams passingExam2 = new Passing_exams(new Date(), subject2, teacher2);
-		Passing_exams passingExam3 = new Passing_exams(new Date(), subject3, teacher3);
-		Passing_exams passingExam4 = new Passing_exams(new Date(), subject1, teacher1);
-		Passing_exams passingExam5 = new Passing_exams(new Date(), subject2, teacher2);
-		
+		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1);
+		Passing_exams passingExam2 = new Passing_exams(new Date(), subject2);
+		Passing_exams passingExam3 = new Passing_exams(new Date(), subject3);
+		Passing_exams passingExam4 = new Passing_exams(new Date(), subject1);
+		Passing_exams passingExam5 = new Passing_exams(new Date(), subject2);
 		
 		Transactions transaction1 = new Transactions(45678, student1);
 		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
 		Subject_presence subPres1 = new Subject_presence(subject1);
 		Student_documents studDoc1 = new Student_documents("slika", student1);
 		Subject_lecture subLec1 = new Subject_lecture(subject1);
-
-		
 		
 		securityUserService.save(user1);
 		securityUserService.save(user2);
@@ -222,11 +220,8 @@ public class TestData {
 		student1.addStudent_documents(studDoc1);
 		studentService.save(student1);
 		teacher1.addSubjectLecture(subLec1);
-//		teacher1.addPassingExam(passingExam1);
+//		teacher1.addPassingExam(passingExam3);
 		teacherService.save(teacher1);
-		
-		
-		
 		
 		Passed_exams passedExam2 = new Passed_exams(9, passingExam1, student2);
 		passedExamsService.save(passedExam2);
@@ -266,6 +261,7 @@ public class TestData {
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subLec1));
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(subPres1));
 //			System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(transaction1));
+			System.out.println(SecurityContextHolder.getContext().getAuthentication());
 
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block

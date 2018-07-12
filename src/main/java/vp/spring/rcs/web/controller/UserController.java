@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import vp.spring.rcs.model.Student_documents;
+import vp.spring.rcs.model.Subject;
 import vp.spring.rcs.model.user.SecurityUser;
 import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.security.TokenUtils;
@@ -84,17 +85,5 @@ public class UserController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-	}
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<SecurityUser> update(@PathVariable Long id,
-			@RequestBody SecurityUser securityUser) {
-		if (securityUserService.findOne(id) == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		securityUser.setId(id);
-		SecurityUser retVal = securityUserService.save(securityUser);
-
-		return new ResponseEntity<>(retVal, HttpStatus.OK);
 	}
 }
