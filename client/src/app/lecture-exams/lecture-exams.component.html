@@ -1,0 +1,29 @@
+<h1>Lecture exams</h1>
+<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th><th>Date</th><th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let exam of subjectLectures">
+        <td>{{exam.subject.name}}</td><td><input type="date" [(ngModel)]="date"></td>
+        <td><button class="btn btn-primary" (click)="apply(exam)">apply</button></td>
+			</tr>
+		</tbody>
+</table>
+<hr>
+<h1>Passing exams</h1>
+<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th><th>Date</th><th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let pass of passingExams">
+        <td>{{pass.subject.name}}</td><td>{{pass.date | date:'medium'}}</td>
+        <td><button class="btn btn-primary" (click)="details(pass.id)">results</button></td>
+			</tr>
+		</tbody>
+</table>

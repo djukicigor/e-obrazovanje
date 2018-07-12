@@ -13,6 +13,7 @@ import { AuthenticationService } from '../security/authentication.service';
 export class ProfileComponent implements OnInit {
   public user: User;
   public isDataAvailable: Boolean;
+  public uploadme: Object;
 
   constructor(private userService:  UserService, private router: Router, private authService: AuthenticationService) {
     this.loadData();
@@ -37,6 +38,10 @@ export class ProfileComponent implements OnInit {
 
   isTeacher() {
     return this.authService.isTeacher()
+  }
+
+  save() {
+    console.log(this.uploadme)
   }
 
 }

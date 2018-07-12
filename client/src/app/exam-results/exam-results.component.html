@@ -1,0 +1,17 @@
+<div *ngIf="isDataAvailable">
+    <h1>{{passingExam.subject.name}}</h1>
+    <h2>{{passingExam.date | date:'medium'}}</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>First name</th><th>Last name</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of passingExam.students">
+            <td>{{student.firstName}}</td><td>{{student.lastName}}</td>
+            <td><button class="btn btn-primary" (click)="details(pass.id)">results</button></td>
+          </tr>
+        </tbody>
+    </table>
+</div>

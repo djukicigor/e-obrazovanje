@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { User, PassingExamsInterface } from '../common.models';
+import { User, PassingExamsInterface, SubjectInterface, SubjectLecturesInterface } from '../common.models';
 import { UserService } from '../main/user.service';
 import { Router } from '@angular/router';
 import { SubjectService } from '../main/subject.service';
@@ -14,6 +14,7 @@ export class PassingExamsComponent implements OnInit {
   public user: User;
   public isDataAvailable: Boolean;
   public passingExams: PassingExamsInterface[];
+  public subjectLectures: SubjectLecturesInterface[];
 
   constructor(private userService:  UserService, private router: Router, private examService: SubjectService) {
     this.loadData();

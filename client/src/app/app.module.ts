@@ -30,6 +30,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PassingExamsComponent } from './passing-exams/passing-exams.component';
+import { LectureExamsComponent } from './lecture-exams/lecture-exams.component';
+import { ExamResultsComponent } from './exam-results/exam-results.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
@@ -37,6 +39,8 @@ const appRoutes: Routes = [
   { path: 'subject/edit/:id', component: EditSubjectComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'transactions', component: TransactionsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'passing', component: PassingExamsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'lecture', component: LectureExamsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'lecture/:id', component: ExamResultsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'profile/edit', component: EditProfileComponent, canActivate:[CanActivateAuthGuard] },
@@ -65,6 +69,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     EditProfileComponent,
     PassingExamsComponent,
+    LectureExamsComponent,
+    ExamResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
   ],
   providers: [
     {

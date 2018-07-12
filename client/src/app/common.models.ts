@@ -12,6 +12,8 @@ export class User implements UserInterface {
 	public passingExams: PassingExamsInterface[];
 	public subjectPresences: SubjectPresencesInterface[];
 	public transactions: TransactionInterface[];
+	public subjectLectures: SubjectLecturesInterface[];
+
 
 	constructor(userCfg:UserInterface) {
 		this.id = userCfg.id;
@@ -26,6 +28,7 @@ export class User implements UserInterface {
 		this.passingExams = userCfg.passingExams;
 		this.subjectPresences = userCfg.subjectPresences;
 		this.transactions = userCfg.transactions;
+		this.subjectLectures = userCfg.subjectLectures;
 	}
 }
 
@@ -42,6 +45,7 @@ interface UserInterface {
 	passingExams: PassingExamsInterface[];
 	subjectPresences: SubjectPresencesInterface[];
 	transactions: TransactionInterface[];
+	subjectLectures: SubjectLecturesInterface[];
 }
 
 interface AuthorityInterface {
@@ -78,6 +82,12 @@ export interface PassingExamsInterface {
 	subject: SubjectInterface;
 	teacher: UserInterface;
 	students: UserInterface[];
+}
+
+export interface SubjectLecturesInterface {
+	id?: number;
+	teacher: UserInterface;
+	subject: SubjectInterface;
 }
 
 export class Record implements RecordInterface{

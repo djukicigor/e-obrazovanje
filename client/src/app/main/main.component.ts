@@ -7,6 +7,7 @@ import { PriceLimits } from '../filter-records/filter-records.component';
 
 import { RecordService } from '../main/record.service';
 import { UserService } from '../main/user.service';
+import { AuthenticationService } from '../security/authentication.service';
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,7 @@ export class MainComponent implements OnInit {
   public user: User;
   public subjectPresences: SubjectPresencesInterface[];
 
-  constructor(private recordService: RecordService, private userService:  UserService) {
+  constructor(private recordService: RecordService, private userService:  UserService, private authService: AuthenticationService) {
     recordService.getRecords();
     this.priceFilter = {
       lowest:0,
@@ -41,7 +42,11 @@ export class MainComponent implements OnInit {
     this.userService.getUser(currentUser.username)
       .subscribe((user: User) => {
         this.user = user;
-        this.subjectPresences = user.subjectPresences;
+        if (this.authService.isStudent()) {
+          this.subjectPresences = user.subjectPresences;
+        } else {
+          this.subjectPresences = user.subjectLectures;
+        }
       })
     this.recordService.
       getRecords(order,this.priceFilter.lowest,this.priceFilter.highest).

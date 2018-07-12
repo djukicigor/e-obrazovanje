@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { SubjectInterface, PassingExamsInterface } from '../common.models';
+import { SubjectInterface, PassingExamsInterface, SubjectLecturesInterface } from '../common.models';
 
 @Injectable()
 export class SubjectService {
@@ -38,6 +38,15 @@ export class SubjectService {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     console.log(JSON.stringify(passingExam))
     return this.http.put(`${this.passingExamsPath}/${passingExam.id}`, JSON.stringify(passingExam), { headers })
+      .catch((error: any) => Observable.throw(error.message || 'Server error'));
+  }
+
+  addExam(lectureExam: SubjectLecturesInterface): Observable<SubjectLecturesInterface> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    lectureExam.id = null;
+    lectureExam.teacher.subjectLectures = [];
+    console.log(JSON.stringify(lectureExam))
+    return this.http.post(`${this.passingExamsPath}`, JSON.stringify(lectureExam), { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 

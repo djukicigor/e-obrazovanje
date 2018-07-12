@@ -26,4 +26,8 @@ export class AppComponent {
   isStudent() {
     return this.authenticationService.isStudent();
   }
+
+  isTeacher() {
+    return this.authenticationService.isTeacher();
+  }
 }
