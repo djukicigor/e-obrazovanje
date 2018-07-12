@@ -50,8 +50,6 @@ public class Student extends SecurityUser {
 	@OneToMany(fetch=FetchType.LAZY)
 	List<Passed_exams> passedExams = new ArrayList<Passed_exams>();
 	
-//	uraditi m2m subject_presence, student_document o2m, passed_exams o2m namestiti getere setere za sve u svemu(add/remove)
-	
 	public Student(String username, String password, String firstName, String lastName, int citizenID, String indexNumber, float balance) {
 		super(username, password, firstName, lastName);
 		this.citizenID = citizenID;

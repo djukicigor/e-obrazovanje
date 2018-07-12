@@ -27,24 +27,14 @@ public class Teacher extends SecurityUser {
 	
 	private String role;
 	
-//	@JsonIgnoreProperties("teachers")
-	@JsonIgnore
+	@JsonIgnoreProperties("teachers")
 	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     @JoinTable(name = "securityUser_subjectLecture", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "subject_id", referencedColumnName = "id"))
 	List<Subject_lecture> subjectLectures = new ArrayList<Subject_lecture>();
 	
-//	@OneToMany(fetch=FetchType.EAGER)
-//	List<Passing_exams> passingExams = new ArrayList<Passing_exams>();
-	
-//	@JsonIgnoreProperties("teacher")
-	@JsonIgnore
+	@JsonIgnoreProperties("teacher")
 	@OneToMany(fetch=FetchType.LAZY)
 	List<Passing_exams> passingExams1 = new ArrayList<Passing_exams>();
-//	@ManyToMany(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-//    @JoinTable(name = "securityUser_passingExams", joinColumns = @JoinColumn(name = "securityUser_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "passingExam_id", referencedColumnName = "id"))
-//	List<Passing_exams> passingExams1 = new ArrayList<Passing_exams>();
-	
-//	uraditi subject_lecture m2m , passing_exams o2m... namestiti getere setere za sve u svemu(add/remove)
 	
 	public Teacher(String username, String password, String firstName, String lastName, int citizenID, String role) {
 		super(username, password, firstName, lastName);
