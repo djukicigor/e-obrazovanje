@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -83,5 +84,17 @@ public class UserController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<SecurityUser> update(@PathVariable Long id,
+			@RequestBody SecurityUser securityUser) {
+		if (securityUserService.findOne(id) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		securityUser.setId(id);
+		SecurityUser retVal = securityUserService.save(securityUser);
+
+		return new ResponseEntity<>(retVal, HttpStatus.OK);
 	}
 }
