@@ -9,7 +9,7 @@ export class User implements UserInterface {
 	public indexNumber: string;
 	public balance: number;
 	public userAuthorities: AuthorityInterface[];
-	public passingExams: ExamInterface[];
+	public passingExams: PassingExamsInterface[];
 	public subjectPresences: SubjectPresencesInterface[];
 	public transactions: TransactionInterface[];
 
@@ -39,7 +39,7 @@ interface UserInterface {
 	indexNumber: string;
 	balance: number;
 	userAuthorities: AuthorityInterface[];
-	passingExams: ExamInterface[];
+	passingExams: PassingExamsInterface[];
 	subjectPresences: SubjectPresencesInterface[];
 	transactions: TransactionInterface[];
 }
@@ -70,6 +70,14 @@ export interface TransactionInterface {
 export interface SubjectPresencesInterface {
 	id?: number;
 	subject: SubjectInterface;
+}
+
+export interface PassingExamsInterface {
+	id?: number;
+	date: Date;
+	subject: SubjectInterface;
+	teacher: UserInterface;
+	students: UserInterface[];
 }
 
 export class Record implements RecordInterface{

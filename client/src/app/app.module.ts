@@ -29,12 +29,14 @@ import { EditSubjectComponent } from './edit-subject/edit-subject.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { PassingExamsComponent } from './passing-exams/passing-exams.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'subject/:id', component: SubjectDetailsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'subject/edit/:id', component: EditSubjectComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'transactions', component: TransactionsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'passing', component: PassingExamsComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'profile/edit', component: EditProfileComponent, canActivate:[CanActivateAuthGuard] },
@@ -62,6 +64,7 @@ const appRoutes: Routes = [
     TransactionsComponent,
     ProfileComponent,
     EditProfileComponent,
+    PassingExamsComponent,
   ],
   imports: [
     BrowserModule,

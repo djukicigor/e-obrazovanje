@@ -61,7 +61,8 @@ public class PassingExamsController {
 		passing_exams.setId(id);
 		Passing_exams retVal = passingExamsService.save(passing_exams);
 		
-		Student student = studentService.findOne(id);
+		Student student = studentService.findOne(retVal.getStudents().get(retVal.getStudents().size() - 1).getId());
+		System.out.println(student);
 		student.addPassingExam(retVal);
 		studentService.save(student);
 
