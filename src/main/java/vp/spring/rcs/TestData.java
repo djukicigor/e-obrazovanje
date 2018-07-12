@@ -157,9 +157,14 @@ public class TestData {
 		SecurityUserAuthority studentAuthority4 = new SecurityUserAuthority(student4, authority3);
 		
 		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
+		SecurityUserAuthority teacherAuthority1 = new SecurityUserAuthority(teacher1, authority2);
 		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Dajanic", 4848552, "uloga");
+		SecurityUserAuthority teacherAuthority2 = new SecurityUserAuthority(teacher2, authority2);
 		Teacher teacher3 = new Teacher("jovana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Jovana", "Jovanic", 4848552, "uloga");
+		SecurityUserAuthority teacherAuthority3 = new SecurityUserAuthority(teacher3, authority2);
 		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Ivana", "Ivanic", 4848552, "uloga");
+		SecurityUserAuthority teacherAuthority4 = new SecurityUserAuthority(teacher4, authority2);
+		
 		
 		Subject subject1 = new Subject("srpski", "opis");
 		Subject subject2 = new Subject("matematika", "opis");
@@ -203,9 +208,13 @@ public class TestData {
 		subjectService.save(subject3);
 		
 		teacherService.save(teacher1);
+		securityUserAuthorityService.save(teacherAuthority1);
 		teacherService.save(teacher2);
+		securityUserAuthorityService.save(teacherAuthority2);
 		teacherService.save(teacher3);
+		securityUserAuthorityService.save(teacherAuthority3);
 		teacherService.save(teacher4);
+		securityUserAuthorityService.save(teacherAuthority4);
 		
 		studentService.save(student1);
 		studentService.save(student2);
