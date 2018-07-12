@@ -172,7 +172,7 @@ public class TestData {
 		Subject subject2 = new Subject("matematika", "opis");
 		Subject subject3 = new Subject("engleski", "opis");
 		
-		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
+		Passing_exams passingExam1 = new Passing_exams(new Date(), subject3, teacher1);
 		Passing_exams passingExam2 = new Passing_exams(new Date(), subject2, teacher2);
 		Passing_exams passingExam3 = new Passing_exams(new Date(), subject3, teacher3);
 		Passing_exams passingExam4 = new Passing_exams(new Date(), subject1, teacher1);
@@ -291,14 +291,14 @@ public class TestData {
 		student2.addStudent_documents(studDoc2);
 		
 		student3.addPassingExam(passingExam3);
-		student3.addPassingExam(passingExam4);
+		student3.addPassingExam(passingExam2);
 		student3.addTransaction(transaction3);
 		student3.addPassed_exams(passedExam3);
 		student3.addSubjectPresence(subPres3);
 		student3.addStudent_documents(studDoc3);
 		
-		student4.addPassingExam(passingExam4);
-		student4.addPassingExam(passingExam3);
+		student4.addPassingExam(passingExam1);
+		student4.addPassingExam(passingExam2);
 		student4.addTransaction(transaction4);
 		student4.addPassed_exams(passedExam4);
 		student4.addSubjectPresence(subPres4);
