@@ -207,7 +207,6 @@ public class TestData {
 		
 
 		
-		
 		securityUserService.save(user1);
 		securityUserService.save(user2);
 		securityUserService.save(user3);
@@ -223,12 +222,12 @@ public class TestData {
 		subjectService.save(subject3);
 		
 		teacherService.save(teacher1);
-		securityUserAuthorityService.save(teacherAuthority1);
 		teacherService.save(teacher2);
-		securityUserAuthorityService.save(teacherAuthority2);
 		teacherService.save(teacher3);
-		securityUserAuthorityService.save(teacherAuthority3);
 		teacherService.save(teacher4);
+		securityUserAuthorityService.save(teacherAuthority1);
+		securityUserAuthorityService.save(teacherAuthority2);
+		securityUserAuthorityService.save(teacherAuthority3);
 		securityUserAuthorityService.save(teacherAuthority4);
 		
 		studentService.save(student1);
@@ -280,6 +279,8 @@ public class TestData {
 		student1.addTransaction(transaction1);
 		student1.addPassed_exams(passedExam1);
 		student1.addSubjectPresence(subPres1);
+		student1.addSubjectPresence(subPres2);
+		student1.addSubjectPresence(subPres3);
 		student1.addStudent_documents(studDoc1);
 		
 		student2.addPassingExam(passingExam2);
@@ -318,8 +319,6 @@ public class TestData {
 		
 		
 		
-		
-
 		
 //		
 //		Printing out objects as JSON for testing
