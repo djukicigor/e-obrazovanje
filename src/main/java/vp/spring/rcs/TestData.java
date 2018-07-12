@@ -148,15 +148,18 @@ public class TestData {
 		SecurityUserAuthority userAuthority3 = new SecurityUserAuthority(user3, authority3);
 		
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
+		SecurityUserAuthority studentAuthority1 = new SecurityUserAuthority(student1, authority3);
 		Student student2 = new Student("zoran", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Petrovic", 123456789, "SF120", 10000);
+		SecurityUserAuthority studentAuthority2 = new SecurityUserAuthority(student2, authority3);
 		Student student3 = new Student("goran", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Goran", "Petrovic", 123456789, "SF130", 10000);
+		SecurityUserAuthority studentAuthority3 = new SecurityUserAuthority(student3, authority3);
 		Student student4 = new Student("boban", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Boban", "Petrovic", 123456789, "SF130", 10000);
+		SecurityUserAuthority studentAuthority4 = new SecurityUserAuthority(student4, authority3);
 		
 		Teacher teacher1 = new Teacher("bojana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Bojana", "Kusljic", 4848552, "uloga");
 		Teacher teacher2 = new Teacher("dajana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Dajana", "Dajanic", 4848552, "uloga");
 		Teacher teacher3 = new Teacher("jovana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Jovana", "Jovanic", 4848552, "uloga");
 		Teacher teacher4 = new Teacher("ivana", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Ivana", "Ivanic", 4848552, "uloga");
-		
 		
 		Subject subject1 = new Subject("srpski", "opis");
 		Subject subject2 = new Subject("matematika", "opis");
@@ -168,9 +171,17 @@ public class TestData {
 		Passing_exams passingExam4 = new Passing_exams(new Date(), subject1, teacher1);
 		Passing_exams passingExam5 = new Passing_exams(new Date(), subject2, teacher2);
 		
+		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
+		Passed_exams passedExam2 = new Passed_exams(9, passingExam2, student2);
+		Passed_exams passedExam3 = new Passed_exams(8, passingExam3, student3);
+		Passed_exams passedExam4 = new Passed_exams(7, passingExam4, student4);
 		
 		Transactions transaction1 = new Transactions(45678, student1);
-		Passed_exams passedExam1 = new Passed_exams(10, passingExam1, student1);
+		Transactions transaction2 = new Transactions(12000, student2);
+		Transactions transaction3 = new Transactions(15000, student3);
+		Transactions transaction4 = new Transactions(20000, student4);
+		
+		
 		Subject_presence subPres1 = new Subject_presence(subject1);
 		Student_documents studDoc1 = new Student_documents("slika", student1);
 		Subject_lecture subLec1 = new Subject_lecture(subject1);
@@ -200,16 +211,28 @@ public class TestData {
 		studentService.save(student2);
 		studentService.save(student3);
 		studentService.save(student4);
+		securityUserAuthorityService.save(studentAuthority1);
+		securityUserAuthorityService.save(studentAuthority2);
+		securityUserAuthorityService.save(studentAuthority3);
+		securityUserAuthorityService.save(studentAuthority4);
 		
 		passingExamsService.save(passingExam1);
 		passingExamsService.save(passingExam2);
 		passingExamsService.save(passingExam3);
 		passingExamsService.save(passingExam4);
-		
+		passingExamsService.save(passingExam5);
 		
 		passedExamsService.save(passedExam1);
-		subjectPresenceService.save(subPres1);
+		passedExamsService.save(passedExam2);
+		passedExamsService.save(passedExam3);
+		passedExamsService.save(passedExam4);
+		
 		transactionsService.save(transaction1);
+		transactionsService.save(transaction2);
+		transactionsService.save(transaction3);
+		transactionsService.save(transaction4);
+		
+		subjectPresenceService.save(subPres1);
 		studentDocumentsService.save(studDoc1);
 		subjectLectureService.save(subLec1);
 		
@@ -228,11 +251,7 @@ public class TestData {
 		
 		
 		
-		Passed_exams passedExam2 = new Passed_exams(9, passingExam1, student2);
-		passedExamsService.save(passedExam2);
 		
-		Passed_exams passedExam3 = new Passed_exams(8, passingExam1, student3);
-		passedExamsService.save(passedExam3);
 		
 		
 		Student_documents studDoc2 = new Student_documents("slika", student2);
@@ -244,14 +263,7 @@ public class TestData {
 		Student_documents studDoc4 = new Student_documents("slika", student4);
 		studentDocumentsService.save(studDoc4);
 
-		Transactions transaction2 = new Transactions(12000, student1);
-		transactionsService.save(transaction2);
 		
-		Transactions transaction3 = new Transactions(15000, student2);
-		transactionsService.save(transaction3);
-		
-		Transactions transaction4 = new Transactions(20000, student3);
-		transactionsService.save(transaction4);
 //		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
