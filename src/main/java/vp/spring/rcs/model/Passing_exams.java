@@ -29,13 +29,10 @@ public class Passing_exams {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;
 	
-//	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Teacher teacher;
-	
-//	@JsonIgnoreProperties("passingExams")
-	@JsonIgnore
-	@ManyToMany(mappedBy="passingExams", fetch=FetchType.LAZY)
+
+	@ManyToMany(mappedBy="passingExams", fetch=FetchType.EAGER)
 	List<Student> students = new ArrayList<Student>();
 	
 	public Passing_exams(Date date, Subject subject, Teacher teacher) {
