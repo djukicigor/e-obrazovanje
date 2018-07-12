@@ -17,7 +17,6 @@ export class SubjectService {
 
   saveSubject(subject: SubjectInterface): Observable<SubjectInterface> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log(JSON.stringify(subject))
     return this.http.put(`${this.path}/${subject.id}`, JSON.stringify(subject), { headers })
     .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
