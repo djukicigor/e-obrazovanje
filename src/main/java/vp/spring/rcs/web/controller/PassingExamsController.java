@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import vp.spring.rcs.model.Passing_exams;
+import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.service.PassingExamsService;
+import vp.spring.rcs.service.StudentService;
 import vp.spring.rcs.web.dto.CommonResponseDTO;
 
 @RestController
@@ -22,6 +24,9 @@ public class PassingExamsController {
 
 	@Autowired
 	PassingExamsService passingExamsService;
+	
+	@Autowired
+	StudentService studentService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Passing_exams>> getAll() {
@@ -55,6 +60,10 @@ public class PassingExamsController {
 		}
 		passing_exams.setId(id);
 		Passing_exams retVal = passingExamsService.save(passing_exams);
+		
+		Student student = studentService.findOne(id);
+		student.addPassingExam(retVal);
+		studentService.save(student);
 
 		return new ResponseEntity<>(retVal, HttpStatus.OK);
 	}
