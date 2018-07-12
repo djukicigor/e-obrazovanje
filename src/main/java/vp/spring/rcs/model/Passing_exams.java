@@ -29,11 +29,9 @@ public class Passing_exams {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;
 	
-	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","passingExams"})
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Teacher teacher;
-//	@ManyToMany(mappedBy="passingExams1", fetch=FetchType.EAGER)
-//	List<Teacher> teachers = new ArrayList<Teacher>();
 
 	@ManyToMany(mappedBy="passingExams", fetch=FetchType.EAGER)
 	List<Student> students = new ArrayList<Student>();
