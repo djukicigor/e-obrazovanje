@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { SubjectInterface, PassingExamsInterface, SubjectLecturesInterface } from '../common.models';
+import { SubjectInterface, PassingExamsInterface, SubjectLecturesInterface, PassedExamInterface } from '../common.models';
 
 @Injectable()
 export class SubjectService {
   private readonly path = 'http://localhost:8080/api/subjects';
   private readonly examsPath = 'http://localhost:8080/api/students/exams';
   private readonly passingExamsPath = 'http://localhost:8080/api/passingexams';
+  private readonly pasedExamsPath = 'http://localhost:8080/api/passedexams';
 
   constructor(private http: HttpClient) { }
 
@@ -47,6 +48,13 @@ export class SubjectService {
     lectureExam.teacher.subjectLectures = [];
     console.log(JSON.stringify(lectureExam))
     return this.http.post(`${this.passingExamsPath}`, JSON.stringify(lectureExam), { headers })
+      .catch((error: any) => Observable.throw(error.message || 'Server error'));
+  }
+
+  saveResults(passedExam: PassedExamInterface): Observable<PassedExamInterface> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // console.log(JSON.stringify(passingExam))
+    return this.http.post(`${this.pasedExamsPath}`, JSON.stringify(passedExam), { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 

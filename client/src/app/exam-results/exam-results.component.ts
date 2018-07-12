@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { SubjectInterface, User, PassingExamsInterface } from '../common.models';
+import { SubjectInterface, User, PassingExamsInterface, PassedExamInterface } from '../common.models';
 import { SubjectService } from '../main/subject.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../main/user.service';
@@ -17,6 +17,8 @@ export class ExamResultsComponent implements OnInit {
   isDataAvailable: boolean;
   public user: User;
   public passingExam: PassingExamsInterface;
+  grade: number;
+  public passedExam: PassedExamInterface;
 
   constructor(private userService:  UserService, private subjectService: SubjectService, private route: ActivatedRoute) {
     this.loadData();
@@ -43,5 +45,20 @@ export class ExamResultsComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  saveResults(passingExam, student): void {
+    console.log(passingExam)
+    this.passedExam = {
+      grade: this.grade,
+      passingExam: this.passingExam
+    };
+    this.subjectService.saveResults(this.passedExam)
+    .subscribe(() => {
+      var index = passingExam.students.indexOf(student);
+      if (index > -1) {
+        this.passingExam.students.splice(index, 1);
+      }
+    });
   }
 }
