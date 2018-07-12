@@ -1,0 +1,37 @@
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { User } from '../common.models';
+import { UserService } from '../main/user.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class ProfileComponent implements OnInit {
+  public user: User;
+  public isDataAvailable: Boolean;
+
+  constructor(private userService:  UserService, private router: Router) {
+    this.loadData();
+  }
+
+  ngOnInit() {
+  }
+
+  private loadData(){
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.isDataAvailable = false;
+    this.userService.getUser(currentUser.username)
+      .subscribe((user: User) => {
+        this.user = user;
+        this.isDataAvailable = true;
+      })
+  }
+
+  edit = function (id) {
+    this.router.navigate(['/profile/edit',id]);
+  }
+
+}

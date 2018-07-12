@@ -69,7 +69,7 @@ export interface TransactionInterface {
 
 export interface SubjectPresencesInterface {
 	id?: number;
-	subjects: SubjectInterface[];
+	subject: SubjectInterface;
 }
 
 export class Record implements RecordInterface{
