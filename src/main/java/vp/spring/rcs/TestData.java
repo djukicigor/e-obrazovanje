@@ -144,12 +144,8 @@ public class TestData {
 		SecurityUser user1 = new SecurityUser("admin", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Zoran", "Peric");
 		SecurityAuthority authority1 = new SecurityAuthority("ROLE_ADMIN");
 		SecurityUserAuthority userAuthority1 = new SecurityUserAuthority(user1, authority1);
-		SecurityUser user2 = new SecurityUser("teacher", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Jovan", "Jovanovic");
 		SecurityAuthority authority2 = new SecurityAuthority("ROLE_TEACHER");
-		SecurityUserAuthority userAuthority2 = new SecurityUserAuthority(user2, authority2);
-		SecurityUser user3 = new SecurityUser("student", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Ivan", "Ivanovic");
 		SecurityAuthority authority3 = new SecurityAuthority("ROLE_STUDENT");
-		SecurityUserAuthority userAuthority3 = new SecurityUserAuthority(user3, authority3);
 		
 		Student student1 = new Student("pera", "$2a$04$4pqDFh9SxLAg/uSH59JCB.LwIS6QoAjM9qcE7H9e2drFuWhvTnDFi", "Petar", "Petrovic", 123456789, "SF100", 10000);
 		SecurityUserAuthority studentAuthority1 = new SecurityUserAuthority(student1, authority3);
@@ -207,14 +203,10 @@ public class TestData {
 		Subject_lecture subLec5 = new Subject_lecture(subject2);
 		
 		securityUserService.save(user1);
-		securityUserService.save(user2);
-		securityUserService.save(user3);
 		securityAuthorityService.save(authority1);
 		securityAuthorityService.save(authority2);
 		securityAuthorityService.save(authority3);
 		securityUserAuthorityService.save(userAuthority1);
-		securityUserAuthorityService.save(userAuthority2);
-		securityUserAuthorityService.save(userAuthority3);
 		
 		subjectService.save(subject1);
 		subjectService.save(subject2);
@@ -302,6 +294,19 @@ public class TestData {
 		student4.addSubjectPresence(subPres4);
 		student4.addStudent_documents(studDoc4);
 		
+		teacher1.addPassingExam(passingExam1);
+		teacher1.addPassingExam(passingExam2);
+		teacher1.addSubjectLecture(subLec1);
+		teacher1.addSubjectLecture(subLec3);
+		
+		teacher2.addPassingExam(passingExam3);
+		teacher2.addSubjectLecture(subLec4);
+		
+		teacher3.addPassingExam(passingExam4);
+		teacher3.addSubjectLecture(subLec2);
+		
+		teacher4.addSubjectLecture(subLec2);
+		
 //		Printing out objects as JSON for testing
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -315,11 +320,10 @@ public class TestData {
 		studentService.save(student3);
 		studentService.save(student4);
 		
-		teacher1.addSubjectLecture(subLec1);
-		teacher1.addPassingExam(passingExam3);
 		teacherService.save(teacher1);
-		
-
+		teacherService.save(teacher2);
+		teacherService.save(teacher3);
+		teacherService.save(teacher4);
 	}
 
 }
