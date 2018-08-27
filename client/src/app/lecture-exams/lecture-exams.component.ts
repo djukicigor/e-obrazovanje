@@ -39,14 +39,17 @@ export class LectureExamsComponent implements OnInit {
   apply(exam): void {
     exam.date = new Date(this.date).getTime();
     exam.teacher = this.user;
-    console.log(exam)
-    this.examService.addExam(exam)
-      .subscribe(() => {
-        var index = this.subjectLectures.indexOf(exam);
-        if (index > -1) {
-          this.subjectLectures.splice(index, 1);
-        }
-      });
+    if (isNaN(exam.date)) {
+      alert('You have to set time before you can apply.')
+    } else if (exam.date < Date.now()) {
+      alert('You have to set date in the future not in the past');
+    }
+    else {
+      this.examService.addExam(exam)
+        .subscribe(() => {
+          this.passingExams.push(exam);
+        });
+    }
   }
 
   details = function (id) {
