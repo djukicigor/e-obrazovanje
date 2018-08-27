@@ -55,6 +55,11 @@ public class PassingExamsController {
 
 		Passing_exams retVal = passingExamsService.save(passing_exams);
 		Teacher teacher = teacherService.findOne(retVal.getTeacher().getId());
+		
+		// Ovo prebaciti u servise, samo sam ubacio na brzinu
+		List<Passing_exams> allPassExams = teacher.getPassingExams();
+		allPassExams.add(passing_exams);
+		teacher.setPassingExams(allPassExams);
 		teacherService.save(teacher);
 
 

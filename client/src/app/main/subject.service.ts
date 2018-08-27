@@ -37,7 +37,6 @@ export class SubjectService {
 
   applyExam(passingExam: PassingExamsInterface): Observable<PassingExamsInterface> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    console.log(JSON.stringify(passingExam))
     return this.http.put(`${this.passingExamsPath}/${passingExam.id}`, JSON.stringify(passingExam), { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
@@ -46,7 +45,6 @@ export class SubjectService {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     lectureExam.id = null;
     lectureExam.teacher.subjectLectures = [];
-    console.log(JSON.stringify(lectureExam))
     return this.http.post(`${this.passingExamsPath}`, JSON.stringify(lectureExam), { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
