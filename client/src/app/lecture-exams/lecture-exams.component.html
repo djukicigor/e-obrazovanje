@@ -7,7 +7,7 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let exam of subjectLectures">
-        <td>{{exam.subject.name}}</td><td><input type="date" [(ngModel)]="date"></td>
+        <td>{{exam.subject.name}}</td><td><input type="datetime-local" [(ngModel)]="date"></td>
         <td><button class="btn btn-primary" (click)="apply(exam)">apply</button></td>
 			</tr>
 		</tbody>
