@@ -69,14 +69,14 @@ export class AuthenticationService {
 
   isTeacher() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser.roles[0] === "ROLE_TEACHER" || currentUser.roles[0] === "admin") {
+    if (currentUser.roles[0] === "ROLE_TEACHER" || currentUser.roles[0] === "ROLE_ADMIN") {
       return true;
     }
   }
 
   isStudent() {
     let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser.roles[0] === "ROLE_STUDENT" || currentUser.roles[0] === "admin") {
+    if (currentUser.roles[0] === "ROLE_STUDENT" || currentUser.roles[0] === "ROLE_ADMIN") {
       return true;
     }
   }

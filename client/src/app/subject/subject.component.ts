@@ -18,7 +18,6 @@ export class SubjectComponent implements OnInit {
   constructor(private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit() {
-    console.log(this.subject)
   }
 
   details = function (id) {
