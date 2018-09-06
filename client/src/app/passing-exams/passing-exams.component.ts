@@ -15,6 +15,7 @@ export class PassingExamsComponent implements OnInit {
   public isDataAvailable: Boolean;
   public passingExams: PassingExamsInterface[];
   public subjectLectures: SubjectLecturesInterface[];
+  public money: Number;
 
   constructor(private userService:  UserService, private router: Router, private examService: SubjectService) {
     this.loadData();
@@ -29,6 +30,7 @@ export class PassingExamsComponent implements OnInit {
     this.userService.getUser(currentUser.username)
       .subscribe((user: User) => {
         this.user = user;
+        this.money = user.balance;
         this.examService.getExams(user.id).subscribe(
           (exams: PassingExamsInterface[]) => {
             // exam.students.push(this.user);
