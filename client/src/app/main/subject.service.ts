@@ -13,6 +13,12 @@ export class SubjectService {
 
   constructor(private http: HttpClient) { }
 
+  getSubjects(): Observable<SubjectInterface[]> {
+    console.log('works');
+    return this.http.get<SubjectInterface>(`${this.path}`)
+			.catch((error: any) => Observable.throw(error.message || 'Server error'));
+  }
+
   getSubject(id: string): Observable<SubjectInterface> {
 		return this.http.get<SubjectInterface>(`${this.path}/${id}`)
 			.catch((error: any) => Observable.throw(error.message || 'Server error'));

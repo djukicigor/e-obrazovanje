@@ -13,6 +13,7 @@
 	<app-record-list [records]="records" (deleteRecordIndex)="delete($event)"></app-record-list> -->
 
 	<!-- <br> -->
-	<app-subject-list [subjectPresences]="subjectPresences"></app-subject-list>
+	<app-subject-list *ngIf="subjects" [subjectPresences]="subjects"></app-subject-list>
+	<app-subject-list *ngIf="subjectPresences" [subjectPresences]="subjectPresences"></app-subject-list>
 </div>
 

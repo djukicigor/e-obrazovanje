@@ -80,4 +80,11 @@ export class AuthenticationService {
       return true;
     }
   }
+
+  isAdmin() {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser.roles[0] === "ROLE_ADMIN") {
+      return true;
+    }
+  }
 }

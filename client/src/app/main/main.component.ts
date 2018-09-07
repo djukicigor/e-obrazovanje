@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Record, AuthorInterface, Order, User, SubjectPresencesInterface } from '../common.models';
+import { Record, AuthorInterface, Order, User, SubjectPresencesInterface, SubjectInterface } from '../common.models';
 
 import * as _ from 'lodash';
 
@@ -8,6 +8,7 @@ import { PriceLimits } from '../filter-records/filter-records.component';
 import { RecordService } from '../main/record.service';
 import { UserService } from '../main/user.service';
 import { AuthenticationService } from '../security/authentication.service';
+import { SubjectService } from './subject.service';
 
 @Component({
   selector: 'app-main',
@@ -22,8 +23,9 @@ export class MainComponent implements OnInit {
   public authors: AuthorInterface[];
   public user: User;
   public subjectPresences: SubjectPresencesInterface[];
+  public subjects: SubjectInterface[];
 
-  constructor(private recordService: RecordService, private userService:  UserService, private authService: AuthenticationService) {
+  constructor(private recordService: RecordService, private userService:  UserService, private authService: AuthenticationService, private subjectService: SubjectService) {
     recordService.getRecords();
     this.priceFilter = {
       lowest:0,
@@ -42,7 +44,12 @@ export class MainComponent implements OnInit {
     this.userService.getUser(currentUser.username)
       .subscribe((user: User) => {
         this.user = user;
-        if (this.authService.isStudent()) {
+        if (this.authService.isAdmin()) {
+          this.subjectService.getSubjects()
+          .subscribe((subjects: SubjectInterface[]) => {
+            this.subjects = subjects;
+          })
+        } else if (this.authService.isStudent()) {
           this.subjectPresences = user.subjectPresences;
         } else {
           this.subjectPresences = user.subjectLectures;

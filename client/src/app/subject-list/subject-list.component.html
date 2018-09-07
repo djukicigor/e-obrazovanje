@@ -7,7 +7,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr app-subject *ngFor="let subject of subjectPresences; let i = index" [subject]="subject.subject" [index]="i">
+			<tr app-subject *ngFor="let subject of subjectPresences; let i = index" [subject]="subject.subject || subject" [index]="i">
 				<!-- <app-subject [subject]="subject.subject" [index]="i"></app-subject> -->
 			</tr>
 		</tbody>
