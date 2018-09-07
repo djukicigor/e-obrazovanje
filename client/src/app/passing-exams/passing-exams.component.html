@@ -3,13 +3,13 @@
 <table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Name</th><th>Date</th><th>Action</th>
+				<th>Name</th><th>Date</th><th *ngIf="!isAdmin()">Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let exam of passingExams">
-        <td>{{exam.subject.name}}</td><td>{{exam.date | date:'medium'}}</td>
-        <td><button class="btn btn-primary" (click)="apply(exam)">apply</button></td>
+				<td>{{exam.subject.name}}</td><td>{{exam.date | date:'medium'}}</td>
+				<td *ngIf="!isAdmin()"><button class="btn btn-primary" (click)="apply(exam)">apply</button></td>
 			</tr>
 		</tbody>
 </table>

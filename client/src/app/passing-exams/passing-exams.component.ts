@@ -3,6 +3,7 @@ import { User, PassingExamsInterface, SubjectInterface, SubjectLecturesInterface
 import { UserService } from '../main/user.service';
 import { Router } from '@angular/router';
 import { SubjectService } from '../main/subject.service';
+import { AuthenticationService } from '../security/authentication.service';
 
 @Component({
   selector: 'app-passing-exams',
@@ -17,7 +18,7 @@ export class PassingExamsComponent implements OnInit {
   public subjectLectures: SubjectLecturesInterface[];
   public money: Number;
 
-  constructor(private userService:  UserService, private router: Router, private examService: SubjectService) {
+  constructor(private userService:  UserService, private router: Router, private examService: SubjectService, private authenticationService: AuthenticationService) {
     this.loadData();
   }
 
@@ -52,4 +53,7 @@ export class PassingExamsComponent implements OnInit {
       });
   }
 
+  isAdmin() {
+    return this.authenticationService.isAdmin();
+  }
 }

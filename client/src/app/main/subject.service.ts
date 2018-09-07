@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { SubjectInterface, PassingExamsInterface, SubjectLecturesInterface, PassedExamInterface } from '../common.models';
+import { AuthenticationService } from '../security/authentication.service';
 
 @Injectable()
 export class SubjectService {
@@ -11,11 +12,10 @@ export class SubjectService {
   private readonly passingExamsPath = 'http://localhost:8080/api/passingexams';
   private readonly pasedExamsPath = 'http://localhost:8080/api/passedexams';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthenticationService) { }
 
   getSubjects(): Observable<SubjectInterface[]> {
-    console.log('works');
-    return this.http.get<SubjectInterface>(`${this.path}`)
+    return this.http.get<SubjectInterface[]>(`${this.path}`)
 			.catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 
@@ -31,6 +31,10 @@ export class SubjectService {
   }
 
   getExams(id: number): Observable<PassingExamsInterface[]> {
+    if (this.authService.isAdmin()) {
+      return this.http.get<PassingExamsInterface[]>(`${this.passingExamsPath}`)
+			  .catch((error: any) => Observable.throw(error.message || 'Server error'));
+    }
 		return this.http.get<PassingExamsInterface[]>(`${this.examsPath}/${id}`)
 			.catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
