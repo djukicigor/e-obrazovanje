@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../main/user.service';
 import { User, TransactionInterface } from '../common.models';
+import { AuthenticationService } from '../security/authentication.service';
 
 @Component({
   selector: 'app-transactions',
@@ -13,7 +14,7 @@ export class TransactionsComponent implements OnInit {
   public transactions: TransactionInterface[];
   public isDataAvailable: Boolean;
 
-  constructor(private userService:  UserService) {
+  constructor(private userService:  UserService, private authService: AuthenticationService) {
     this.loadData();
   }
 
@@ -26,9 +27,20 @@ export class TransactionsComponent implements OnInit {
     this.userService.getUser(currentUser.username)
       .subscribe((user: User) => {
         this.user = user;
-        this.transactions = user.transactions;
+        if (this.authService.isAdmin()) {
+          this.userService.getTransactions()
+          .subscribe((transactions: TransactionInterface[]) => {
+            this.transactions = transactions;
+          })
+        } else {
+          this.transactions = user.transactions;
+        }
         this.isDataAvailable = true;
       })
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 
 
