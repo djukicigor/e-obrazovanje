@@ -1,0 +1,10 @@
+<td>
+	{{subject.name}}
+</td>
+<td>
+	{{subject.description}}
+</td>
+<td>
+	<button *ngIf="isTeacher()" class="btn btn-warning" (click)="edit(subject.id)">edit</button>
+	<button class="btn btn-primary" (click)="details(subject.id)">details</button>
+</td>

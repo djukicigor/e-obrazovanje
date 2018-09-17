@@ -20,13 +20,33 @@ import { CanActivateAuthGuard } from './security/can-activate-auth.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from 'app/security/token-interceptor.service';
 import { JwtUtilsService } from 'app/security/jwt-utils.service';
+import { UserService } from './main/user.service';
+import { SubjectListComponent } from './subject-list/subject-list.component';
+import { SubjectComponent } from './subject/subject.component';
+import { SubjectDetailsComponent } from './subject-details/subject-details.component';
+import { SubjectService } from './main/subject.service';
+import { EditSubjectComponent } from './edit-subject/edit-subject.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { PassingExamsComponent } from './passing-exams/passing-exams.component';
+import { LectureExamsComponent } from './lecture-exams/lecture-exams.component';
+import { ExamResultsComponent } from './exam-results/exam-results.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
-  { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },  
-  { path: 'login', component: LoginComponent},  
+  { path: 'subject/:id', component: SubjectDetailsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'subject/edit/:id', component: EditSubjectComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'transactions', component: TransactionsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'passing', component: PassingExamsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'lecture', component: LectureExamsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'lecture/:id', component: ExamResultsComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'profile/edit', component: EditProfileComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
@@ -40,7 +60,17 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     MainComponent,
     RecordDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    SubjectListComponent,
+    SubjectComponent,
+    SubjectDetailsComponent,
+    EditSubjectComponent,
+    TransactionsComponent,
+    ProfileComponent,
+    EditProfileComponent,
+    PassingExamsComponent,
+    LectureExamsComponent,
+    ExamResultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +79,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
-    )
+    ),
   ],
   providers: [
     {
@@ -57,10 +87,12 @@ const appRoutes: Routes = [
       useClass: TokenInterceptorService,
       multi: true
     },
-    RecordService, 
+    RecordService,
     AuthenticationService,
     CanActivateAuthGuard,
-    JwtUtilsService
+    JwtUtilsService,
+    UserService,
+    SubjectService,
   ],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import vp.spring.rcs.model.user.Student;
 
 @Entity
@@ -18,9 +20,9 @@ public class Transactions {
 	
 	private float amount;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Student student;
-	
 	
 	public Transactions(float amount, Student student) {
 		super();

@@ -17,6 +17,10 @@ public class SecurityUserService {
 	public SecurityUser findOne(Long id) {
 		return userRepository.findOne(id);
 	}
+	
+	public SecurityUser findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 
 	public List<SecurityUser> findAll() {
 		return userRepository.findAll();

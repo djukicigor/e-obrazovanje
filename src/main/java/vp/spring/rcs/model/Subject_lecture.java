@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import vp.spring.rcs.model.user.Teacher;
 
@@ -25,13 +28,13 @@ public class Subject_lecture {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;	
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
-	private List<Teacher> teachers = new ArrayList<Teacher>();
+	@JsonIgnore
+	@ManyToMany(mappedBy="subjectLectures", fetch=FetchType.LAZY)
+	List<Teacher> teachers= new ArrayList<Teacher>();
 	
-	public Subject_lecture(Subject subject, List<Teacher> teachers) {
+	public Subject_lecture(Subject subject) {
 		super();
 		this.subject = subject;
-		this.teachers = teachers;
 	}
 	
 	public Subject_lecture() {
@@ -60,6 +63,21 @@ public class Subject_lecture {
 
 	public void setTeachers(List<Teacher> teachers) {
 		this.teachers = teachers;
+	}
+	
+	public void addTeacher(Teacher teacher){
+		this.teachers.add(teacher);
+		
+		if(!teacher.getSubjectLectures().contains(this)){
+			teacher.addSubjectLecture(this);
+		}
+	}
+	
+	public void removeTeacher(Teacher teacher){
+		if(teacher.getSubjectLectures().contains(this)){
+			teacher.getSubjectLectures().remove(this);
+		}
+		teachers.remove(teacher);
 	}
 
 }

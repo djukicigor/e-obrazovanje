@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.model.user.Teacher;
@@ -23,18 +25,22 @@ public class Passing_exams {
     private Long id;
 	
 	private Date date;
-	
+
 	@ManyToOne(fetch=FetchType.EAGER)
+	private Subject subject;
+	
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","passingExams"})
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Teacher teacher;
+
+	@ManyToMany(mappedBy="passingExams", fetch=FetchType.EAGER)
+	List<Student> students = new ArrayList<Student>();
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.MERGE)
-	private List<Student> students = new ArrayList<Student>();
-	
-	public Passing_exams(Date date, Teacher teacher, List<Student> students) {
+	public Passing_exams(Date date, Subject subject, Teacher teacher) {
 		super();
 		this.date = date;
+		this.subject = subject;
 		this.teacher = teacher;
-		this.students = students;
 	}
 	
 	public Passing_exams() {
@@ -57,6 +63,14 @@ public class Passing_exams {
 		this.date = date;
 	}
 
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject= subject;
+	}
+
 	public Teacher getTeacher() {
 		return teacher;
 	}
@@ -72,4 +86,35 @@ public class Passing_exams {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
+	
+	public void addStudent(Student student){
+		this.students.add(student);
+		
+		if(!student.getPassingExams().contains(this)){
+			student.addPassingExam(this);
+		}
+	}
+	
+	public void removeStudent(Student student){
+		if(student.getPassingExams().contains(this)){
+			student.getPassingExams().remove(this);
+		}
+		students.remove(student);
+	}
+	
+//	public List<Teacher> getTeachers() {
+//		return teachers;
+//	}
+//
+//	public void setTeachers(List<Teacher> teachers) {
+//		this.teachers = teachers;
+//	}
+//
+//	public void addTeacher(Teacher teacher){
+//		this.teachers.add(teacher);
+//	}
+//	
+//	public void removeTeacher(Teacher teacher){
+//		teachers.remove(teacher);
+//	}
 }

@@ -1,6 +1,8 @@
 package vp.spring.rcs.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import vp.spring.rcs.model.Passing_exams;
+import vp.spring.rcs.model.Subject_presence;
 import vp.spring.rcs.model.user.Student;
+import vp.spring.rcs.service.PassingExamsService;
 import vp.spring.rcs.service.StudentService;
 import vp.spring.rcs.web.dto.CommonResponseDTO;
 
@@ -22,6 +30,9 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	PassingExamsService passingExamsService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> getAll() {
@@ -69,5 +80,31 @@ public class StudentController {
 			return new ResponseEntity<>(new CommonResponseDTO(),HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
+	@RequestMapping(value = "/exams/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<Passing_exams>> getExams(@PathVariable Long id) {
+		Student student = studentService.findOne(id);
+		List<Subject_presence> subjects = student.getSubjectPresences();
+		List<Passing_exams> alreadyPassingExams = student.getPassingExams();
+		List<Passing_exams> passingExams = passingExamsService.findAll();
+		List<Passing_exams> fittingExams = new ArrayList<Passing_exams>();
+		
+		for (Passing_exams exam : passingExams ) {
+		    boolean fits = false;
+		    for (Subject_presence subject : subjects) {
+		    	if (exam.getSubject().getId() == subject.getSubject().getId()) {
+		    		fits = true;
+		    		for (Passing_exams passingExam : alreadyPassingExams) {
+		    			if(passingExam.getId() == exam.getSubject().getId()) {
+		    				fits = false;
+		    			}
+		    		}
+		    	}
+		    }
+		    if (fits) {
+		    	fittingExams.add(exam);
+		    }
+		}
+		return new ResponseEntity<>(fittingExams, HttpStatus.OK); 
+	}
 }

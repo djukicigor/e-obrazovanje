@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.user.Student;
 
@@ -19,9 +22,11 @@ public class Passed_exams {
 	
 	private int grade;
 	
+	@JsonIgnoreProperties("students")
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Passing_exams passing_exams;
 	
+	@JsonIgnore
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Student student;
 	

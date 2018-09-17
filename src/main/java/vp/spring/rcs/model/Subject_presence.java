@@ -8,8 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import vp.spring.rcs.model.user.Student;
 
@@ -25,13 +28,13 @@ public class Subject_presence {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private Subject subject;	
 	
-	@OneToMany(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
-	private List<Student> students = new ArrayList<Student>();
+	@JsonIgnore
+	@ManyToMany(mappedBy="subjectPresences", fetch=FetchType.LAZY)
+	List<Student> students = new ArrayList<Student>();
 	
-	public Subject_presence(Subject subject, List<Student> students) {
+	public Subject_presence(Subject subject) {
 		super();
 		this.subject = subject;
-		this.students = students;
 	}
 	
 	public Subject_presence() {
@@ -60,5 +63,20 @@ public class Subject_presence {
 
 	public void setStudents(List<Student> students) {
 		this.students = students;
+	}
+	
+	public void addStudent(Student student){
+		this.students.add(student);
+		
+		if(!student.getSubjectPresences().contains(this)){
+			student.addSubjectPresence(this);
+		}
+	}
+	
+	public void removeStudent(Student student){
+		if(student.getSubjectPresences().contains(this)){
+			student.getSubjectPresences().remove(this);
+		}
+		students.remove(student);
 	}
 }

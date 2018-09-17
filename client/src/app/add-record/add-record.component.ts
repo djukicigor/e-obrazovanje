@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Record, AuthorInterface } from '../common.models';
 import { HttpClient } from '@angular/common/http';
 
-// import { Http, Response, RequestOptions, 
+// import { Http, Response, RequestOptions,
 //          Headers, URLSearchParams } from '@angular/http';
 
 
@@ -14,7 +14,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddRecordComponent implements OnInit {
 
-	@Output() newRecordAdded: EventEmitter<Record> = new EventEmitter();  
+	@Output() newRecordAdded: EventEmitter<Record> = new EventEmitter();
 
 	public newRecord: Record;
   public JSON: Object;
@@ -32,16 +32,16 @@ export class AddRecordComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadData();    
+    this.loadData();
   }
 
   loadData(){
-    var sub = this.http.get<AuthorInterface[]>('/api/authors')
+    var sub = this.http.get<AuthorInterface[]>('http://localhost:8080/api/authors')
     .subscribe((authors:AuthorInterface[])=>{this.authors = authors});
   }
 
   addRecord(){
-  	this.newRecordAdded.next(this.newRecord);  	
+  	this.newRecordAdded.next(this.newRecord);
     this.newRecord = new Record({
       title:'',
       author:{},
