@@ -99,15 +99,15 @@ public class StudentController {
 		for (Passing_exams exam : passingExams ) {
 		    boolean fits = false;
 		    for (Subject_presence subject : subjects) {
-		    	if (exam.getSubject().getId() == subject.getSubject().getId()) {
+		    	if (exam.getSubject().getId() == subject.getSubject().getId() && !alreadyPassingExams.contains(exam)) {
 		    		fits = true;
-		    		for (Passing_exams passingExam : alreadyPassingExams) {
-		    			if(passingExam.getId() == exam.getSubject().getId()) {
-		    				fits = false;
-		    			}
-		    		}
+//		    		for (Passing_exams passingExam : alreadyPassingExams) {
+//		    			if(passingExam.getId() == exam.getSubject().getId()) {
+//		    				fits = false;
+//		    			}
+//		    		}
 		    		for (Passed_exams passedExam : alreadyPassedExams) {
-		    			if(passedExam.getId() == exam.getSubject().getId()) {
+		    			if(passedExam.getPassing_exams().getId() == exam.getId()) {
 		    				fits = false;
 		    			}
 		    		}
