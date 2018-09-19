@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { SubjectInterface, PassingExamsInterface, SubjectLecturesInterface, PassedExamInterface } from '../common.models';
+import { SubjectInterface, PassingExamsInterface, SubjectLecturesInterface, PassedExamInterface, User } from '../common.models';
 import { AuthenticationService } from '../security/authentication.service';
 
 @Injectable()
@@ -59,10 +59,13 @@ export class SubjectService {
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 
-  saveResults(passedExam: PassedExamInterface): Observable<PassedExamInterface> {
+  saveResults(passedExam: PassedExamInterface, student: User): Observable<PassedExamInterface> {
+    let params: HttpParams = new HttpParams();
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    params = params.append('passedExam', JSON.stringify(passedExam));
+    params = params.append('student', JSON.stringify(student));
     // console.log(JSON.stringify(passingExam))
-    return this.http.post(`${this.pasedExamsPath}`, JSON.stringify(passedExam), { headers })
+    return this.http.post(`${this.pasedExamsPath}`, { params }, { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 
