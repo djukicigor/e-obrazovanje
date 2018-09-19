@@ -45,9 +45,9 @@ export class SubjectService {
 			.catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 
-  applyExam(passingExam: PassingExamsInterface): Observable<PassingExamsInterface> {
+  applyExam(passingExam: PassingExamsInterface, id: Number): Observable<PassingExamsInterface> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put(`${this.passingExamsPath}/${passingExam.id}`, JSON.stringify(passingExam), { headers })
+    return this.http.put(`${this.passingExamsPath}/${id}`, JSON.stringify(passingExam), { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 

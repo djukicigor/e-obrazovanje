@@ -44,7 +44,7 @@ export class PassingExamsComponent implements OnInit {
 
   apply(exam): void {
     exam.students.push(this.user);
-    this.examService.applyExam(exam)
+    this.examService.applyExam(exam, this.user.id)
       .subscribe(() => {
         var index = this.passingExams.indexOf(exam);
         if (index > -1) {
