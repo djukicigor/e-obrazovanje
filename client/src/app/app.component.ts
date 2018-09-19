@@ -30,4 +30,8 @@ export class AppComponent {
   isTeacher() {
     return this.authenticationService.isTeacher();
   }
+
+  isAdmin() {
+    return this.authenticationService.isAdmin();
+  }
 }
