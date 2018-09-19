@@ -115,7 +115,7 @@ public class TestData {
 		Subject subject4 = new Subject("xml", "opis");
 		Subject subject5 = new Subject("web", "opis");
 		
-		Passing_exams passingExam1 = new Passing_exams(new Date(), subject1, teacher1);
+		Passing_exams passingExam1 = new Passing_exams(new Date(2016-8-12), subject1, teacher1);
 		Passing_exams passingExam2 = new Passing_exams(new Date(), subject2, teacher2);
 		Passing_exams passingExam4 = new Passing_exams(new Date(), subject4, teacher3);
 		Passing_exams passingExam5 = new Passing_exams(new Date(), subject5, teacher4);
