@@ -45,10 +45,11 @@ public class PassedExamsController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Passed_exams> create(@RequestBody Passed_exams passed_exams, @RequestBody Student student) {
+	@RequestMapping(value = "/{id}",method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Passed_exams> create(@PathVariable Long id, @RequestBody Passed_exams passed_exams) {
 		Passed_exams retVal = passedExamsService.save(passed_exams);
 		
+		Student student = studentsService.findOne(id);
 		student.addPassed_exams(passed_exams);
 		studentsService.save(student);
 
