@@ -70,9 +70,6 @@ public class PassingExamsController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Passing_exams> update(@PathVariable Long id,
 			@RequestBody Passing_exams passing_exams) {
-		if (passingExamsService.findOne(id) == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
 		passing_exams.setId(passing_exams.getId());
 		Passing_exams retVal = passingExamsService.save(passing_exams);
 		Student student = studentService.findOne(id);
