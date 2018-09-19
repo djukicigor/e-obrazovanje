@@ -73,9 +73,9 @@ public class PassingExamsController {
 		if (passingExamsService.findOne(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		passing_exams.setId(id);
+		passing_exams.setId(passing_exams.getId());
 		Passing_exams retVal = passingExamsService.save(passing_exams);
-		Student student = studentService.findOne(retVal.getStudents().get(retVal.getStudents().size() - 1).getId());
+		Student student = studentService.findOne(id);
 		student.addPassingExam(passing_exams);
 		studentService.save(student);
 
