@@ -60,12 +60,8 @@ export class SubjectService {
   }
 
   saveResults(passedExam: PassedExamInterface, student: User): Observable<PassedExamInterface> {
-    let params: HttpParams = new HttpParams();
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    params = params.append('passedExam', JSON.stringify(passedExam));
-    params = params.append('student', JSON.stringify(student));
-    // console.log(JSON.stringify(passingExam))
-    return this.http.post(`${this.pasedExamsPath}`, { params }, { headers })
+    return this.http.post(`${this.pasedExamsPath}/${student.id}`, JSON.stringify(passedExam), { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 
