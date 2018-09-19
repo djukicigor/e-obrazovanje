@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import vp.spring.rcs.model.Passed_exams;
+import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.service.PassedExamsService;
+import vp.spring.rcs.service.StudentService;
 import vp.spring.rcs.web.dto.CommonResponseDTO;
 
 @RestController
@@ -22,6 +24,9 @@ public class PassedExamsController {
 
 	@Autowired
 	PassedExamsService passedExamsService;
+	
+	@Autowired
+	StudentService studentsService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Passed_exams>> getAll() {
@@ -41,8 +46,11 @@ public class PassedExamsController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Passed_exams> create(@RequestBody Passed_exams passed_exams) {
+	public ResponseEntity<Passed_exams> create(@RequestBody Passed_exams passed_exams, @RequestBody Student student) {
 		Passed_exams retVal = passedExamsService.save(passed_exams);
+		
+		student.addPassed_exams(passed_exams);
+		studentsService.save(student);
 
 		return new ResponseEntity<>(retVal, HttpStatus.CREATED);
 	}
