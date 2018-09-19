@@ -48,12 +48,11 @@ export class ExamResultsComponent implements OnInit {
   }
 
   saveResults(passingExam, student): void {
-    console.log(passingExam)
     this.passedExam = {
       grade: this.grade,
       passingExam: this.passingExam
     };
-    this.subjectService.saveResults(this.passedExam)
+    this.subjectService.saveResults(this.passedExam, student)
     .subscribe(() => {
       var index = passingExam.students.indexOf(student);
       if (index > -1) {
