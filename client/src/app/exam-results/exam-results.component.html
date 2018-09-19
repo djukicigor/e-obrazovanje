@@ -10,7 +10,7 @@
         <tbody>
           <tr *ngFor="let student of passingExam.students">
             <td>{{student.firstName}}</td><td>{{student.lastName}}</td>
-            <td><input type="number" min=0 max=10 [(ngModel)]="grade" /> <button class="btn btn-primary" (click)="saveResults(passingExam, student)">results</button></td>
+            <td><input type="number" min=5 max=10 [(ngModel)]="grade" /> <button class="btn btn-primary" (click)="saveResults(passingExam, student)">save</button></td>
           </tr>
         </tbody>
     </table>
