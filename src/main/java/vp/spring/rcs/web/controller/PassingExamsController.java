@@ -42,6 +42,7 @@ public class PassingExamsController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Passing_exams> getById(@PathVariable Long id) {
 		Passing_exams passing_exams = passingExamsService.findOne(id);
+		
 
 		if (passing_exams != null) {
 			return new ResponseEntity<>(passing_exams, HttpStatus.OK);
@@ -74,6 +75,9 @@ public class PassingExamsController {
 		}
 		passing_exams.setId(id);
 		Passing_exams retVal = passingExamsService.save(passing_exams);
+		Student student = studentService.findOne(retVal.getStudents().get(retVal.getStudents().size() - 1).getId());
+		student.addPassingExam(passing_exams);
+		studentService.save(student);
 
 		return new ResponseEntity<>(retVal, HttpStatus.OK);
 	}

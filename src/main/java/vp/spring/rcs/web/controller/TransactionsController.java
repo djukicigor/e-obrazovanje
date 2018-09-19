@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import vp.spring.rcs.model.Transactions;
+import vp.spring.rcs.model.user.Student;
+import vp.spring.rcs.service.StudentService;
 import vp.spring.rcs.service.TransactionsService;
 import vp.spring.rcs.web.dto.CommonResponseDTO;
 
@@ -22,6 +24,9 @@ public class TransactionsController {
 
 	@Autowired
 	TransactionsService transactionsService;
+	
+	@Autowired
+	StudentService studentService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Transactions>> getAll() {
@@ -41,8 +46,11 @@ public class TransactionsController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Transactions> create(@RequestBody Transactions transactions) {
+	public ResponseEntity<Transactions> create(@RequestBody Transactions transactions, @RequestBody Student student) {
 		Transactions retVal = transactionsService.save(transactions);
+
+		student.setBalance(student.getBalance() + transactions.getAmount());
+		studentService.save(student);
 
 		return new ResponseEntity<>(retVal, HttpStatus.CREATED);
 	}

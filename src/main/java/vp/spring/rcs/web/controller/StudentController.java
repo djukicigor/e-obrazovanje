@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transaction;
+
+import org.omg.IOP.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,6 +25,7 @@ import vp.spring.rcs.model.Subject_presence;
 import vp.spring.rcs.model.user.Student;
 import vp.spring.rcs.service.PassingExamsService;
 import vp.spring.rcs.service.StudentService;
+import vp.spring.rcs.service.TransactionsService;
 import vp.spring.rcs.web.dto.CommonResponseDTO;
 
 @RestController
@@ -60,11 +64,12 @@ public class StudentController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Student> update(@PathVariable Long id,
-			@RequestBody Student student) {
+			@RequestBody Student student, @RequestBody Transaction transaction) {
 		if (studentService.findOne(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		student.setId(id);
+		
 		Student retVal = studentService.save(student);
 
 		return new ResponseEntity<>(retVal, HttpStatus.OK);
