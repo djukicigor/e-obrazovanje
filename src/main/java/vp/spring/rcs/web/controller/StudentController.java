@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import vp.spring.rcs.model.Passed_exams;
 import vp.spring.rcs.model.Passing_exams;
 import vp.spring.rcs.model.Subject_presence;
 import vp.spring.rcs.model.user.Student;
@@ -91,6 +92,7 @@ public class StudentController {
 		Student student = studentService.findOne(id);
 		List<Subject_presence> subjects = student.getSubjectPresences();
 		List<Passing_exams> alreadyPassingExams = student.getPassingExams();
+		List<Passed_exams> alreadyPassedExams = student.getPassed_exams();
 		List<Passing_exams> passingExams = passingExamsService.findAll();
 		List<Passing_exams> fittingExams = new ArrayList<Passing_exams>();
 		
@@ -101,6 +103,11 @@ public class StudentController {
 		    		fits = true;
 		    		for (Passing_exams passingExam : alreadyPassingExams) {
 		    			if(passingExam.getId() == exam.getSubject().getId()) {
+		    				fits = false;
+		    			}
+		    		}
+		    		for (Passed_exams passedExam : alreadyPassedExams) {
+		    			if(passedExam.getId() == exam.getSubject().getId()) {
 		    				fits = false;
 		    			}
 		    		}
