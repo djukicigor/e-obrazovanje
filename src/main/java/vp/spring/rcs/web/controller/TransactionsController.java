@@ -45,10 +45,11 @@ public class TransactionsController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Transactions> create(@RequestBody Transactions transactions, @RequestBody Student student) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Transactions> create(@PathVariable Long id, @RequestBody Transactions transactions) {
 		Transactions retVal = transactionsService.save(transactions);
-
+		Student student = studentService.findOne(id);
+		student.addTransaction(transactions);
 		student.setBalance(student.getBalance() + transactions.getAmount());
 		studentService.save(student);
 

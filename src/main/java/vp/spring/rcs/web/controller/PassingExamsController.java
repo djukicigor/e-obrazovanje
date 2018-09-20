@@ -73,6 +73,7 @@ public class PassingExamsController {
 		passing_exams.setId(passing_exams.getId());
 		Passing_exams retVal = passingExamsService.save(passing_exams);
 		Student student = studentService.findOne(id);
+		student.setBalance(student.getBalance() - 300);
 		student.addPassingExam(passing_exams);
 		studentService.save(student);
 
