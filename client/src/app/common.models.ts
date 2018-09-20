@@ -54,7 +54,7 @@ interface UserInterface {
 export interface PassedExamInterface {
 	id?: number;
 	grade: number;
-	passingExam: PassingExamsInterface;
+	passing_exams: PassingExamsInterface;
 }
 
 interface AuthorityInterface {

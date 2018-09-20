@@ -62,7 +62,7 @@ export class SubjectService {
   saveResults(passedExam: PassedExamInterface, student: User): Observable<PassedExamInterface> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let exam = passedExam;
-    delete exam.passingExam.students;
+    delete exam.passing_exams.students;
     console.log(exam);
     return this.http.post(`${this.pasedExamsPath}/${student.id}`, JSON.stringify(exam), { headers })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));

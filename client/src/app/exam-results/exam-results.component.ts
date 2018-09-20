@@ -50,7 +50,7 @@ export class ExamResultsComponent implements OnInit {
   saveResults(passingExam, student): void {
     this.passedExam = {
       grade: this.grade,
-      passingExam: this.passingExam
+      passing_exams: this.passingExam
     };
     this.subjectService.saveResults(this.passedExam, student)
     .subscribe(() => {
