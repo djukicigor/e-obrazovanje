@@ -13,17 +13,17 @@
       <li class="list-group-item">
         <h4>Full name: {{user.firstName}} {{user.lastName}}</h4>
       </li>
-      <li class="list-group-item">
+      <li *ngIf="!isAdmin()" class="list-group-item">
           <h4>Citizen ID: {{user.citizenID}}</h4>
       </li>
-      <li class="list-group-item" *ngIf="isStudent()">
+      <li class="list-group-item" *ngIf="isStudent() && !isAdmin()">
           <h4>Index number: {{user.indexNumber}}</h4>
       </li>
     </ul>
   </div>
-  <button *ngIf="isTeacher()" class="btn btn-warning" (click)="edit()">edit</button>
+  <button *ngIf="isTeacher() && !isAdmin()" class="btn btn-warning" (click)="edit()">edit</button>
   <br><br>
-  <form class="form-horizontal">
+  <form *ngIf="isStudent() && !isAdmin()" class="form-horizontal">
       <div class="form-group">
           <label class="control-label col-sm-1" for="input-file">Upload doc: </label>
           <div class="col-sm-11">
