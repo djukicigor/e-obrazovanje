@@ -21,6 +21,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from 'app/security/token-interceptor.service';
 import { JwtUtilsService } from 'app/security/jwt-utils.service';
 import { UserService } from './main/user.service';
+import { TransactionService } from './main/transaction.service';
 import { SubjectListComponent } from './subject-list/subject-list.component';
 import { SubjectComponent } from './subject/subject.component';
 import { SubjectDetailsComponent } from './subject-details/subject-details.component';
@@ -102,6 +103,7 @@ const appRoutes: Routes = [
     JwtUtilsService,
     UserService,
     SubjectService,
+    TransactionService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../main/user.service';
+import { TransactionService } from '../main/transaction.service';
 import { User, TransactionInterface } from '../common.models';
 import { AuthenticationService } from '../security/authentication.service';
 
@@ -11,10 +12,13 @@ import { AuthenticationService } from '../security/authentication.service';
 })
 export class TransactionsComponent implements OnInit {
   public user: User;
+  public transaction: TransactionInterface;
   public transactions: TransactionInterface[];
   public isDataAvailable: Boolean;
+  public amount: number;
+  public studentId: number;
 
-  constructor(private userService:  UserService, private authService: AuthenticationService) {
+  constructor(private transactionService: TransactionService, private userService:  UserService, private authService: AuthenticationService) {
     this.loadData();
   }
 
@@ -43,5 +47,11 @@ export class TransactionsComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
-
+  save(): void {
+    this.transaction = {
+      amount : this.amount
+    };
+    this.transactionService.addTransaction(this.transaction, this.studentId)
+      .subscribe((data) => {this.transactions.push(data)});
+  }
 }
