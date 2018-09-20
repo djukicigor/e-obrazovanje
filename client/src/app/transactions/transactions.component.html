@@ -22,10 +22,9 @@
       <tr class="add-new">
         <td>add new transaction</td>
         <td>
-          <form (ngSubmit)="save()">
-            <input type="text" placeholder="ammount">
-            <input class="btn btn-primary" type="submit" value="add" />
-          </form>
+          <input type="number" [(ngModel)]="studentId" placeholder="student id">
+          <input type="text" [(ngModel)]="amount" placeholder="ammount">
+          <button class="btn btn-primary" (click)="save()">apply</button>
         </td>
       </tr>
     </tbody>
