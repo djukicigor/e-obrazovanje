@@ -1,0 +1,14 @@
+<h1>Results</h1>
+<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th><th>Date</th><th>Grade</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let passed of passedExams">
+        <td>{{passed.passing_exams.subject.name}}</td><td>{{passed.passing_exams.date | date:'medium'}}</td>
+        <td>{{passed.grade}}</td>
+			</tr>
+		</tbody>
+</table>

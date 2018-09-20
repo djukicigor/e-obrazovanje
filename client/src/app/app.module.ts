@@ -33,6 +33,7 @@ import { PassingExamsComponent } from './passing-exams/passing-exams.component';
 import { LectureExamsComponent } from './lecture-exams/lecture-exams.component';
 import { ExamResultsComponent } from './exam-results/exam-results.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { ResultsListComponent } from './results-list/results-list.component';
 
 const appRoutes: Routes = [
   { path: 'record/:id', component: RecordDetailsComponent, canActivate:[CanActivateAuthGuard] },
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
   { path: 'main', component: MainComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'profile/edit', component: EditProfileComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'users', component: UserListComponent, canActivate:[CanActivateAuthGuard] },
+  { path: 'results', component: ResultsListComponent, canActivate:[CanActivateAuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
@@ -74,6 +76,7 @@ const appRoutes: Routes = [
     LectureExamsComponent,
     ExamResultsComponent,
     UserListComponent,
+    ResultsListComponent,
   ],
   imports: [
     BrowserModule,

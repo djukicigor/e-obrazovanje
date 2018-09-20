@@ -13,7 +13,7 @@ export class User implements UserInterface {
 	public subjectPresences: SubjectPresencesInterface[];
 	public transactions: TransactionInterface[];
 	public subjectLectures: SubjectLecturesInterface[];
-	public passedExam: PassedExamInterface;
+	public passed_exams: PassedExamInterface[];
 
 
 	constructor(userCfg:UserInterface) {
@@ -30,7 +30,7 @@ export class User implements UserInterface {
 		this.subjectPresences = userCfg.subjectPresences;
 		this.transactions = userCfg.transactions;
 		this.subjectLectures = userCfg.subjectLectures;
-		this.passedExam = userCfg.passedExam;
+		this.passed_exams = userCfg.passed_exams;
 	}
 }
 
@@ -48,7 +48,7 @@ interface UserInterface {
 	subjectPresences: SubjectPresencesInterface[];
 	transactions: TransactionInterface[];
 	subjectLectures: SubjectLecturesInterface[];
-	passedExam: PassedExamInterface;
+	passed_exams: PassedExamInterface[];
 }
 
 export interface PassedExamInterface {
