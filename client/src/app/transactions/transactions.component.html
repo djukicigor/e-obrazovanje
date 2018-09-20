@@ -10,12 +10,23 @@
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
-        <th>Number</th><th>Amount</th>
+        <th>Number</th>
+        <th>Amount</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let transaction of transactions">
-        <td>{{transaction.id}}</td><td>{{transaction.amount}}</td>
+        <td>{{transaction.id}}</td>
+        <td>{{transaction.amount}}</td>
+      </tr>
+      <tr class="add-new">
+        <td>add new transaction</td>
+        <td>
+          <form (ngSubmit)="save()">
+            <input type="text" placeholder="ammount">
+            <input class="btn btn-primary" type="submit" value="add" />
+          </form>
+        </td>
       </tr>
     </tbody>
   </table>
