@@ -13,8 +13,8 @@
 		</tbody>
 </table>
 <hr>
-<h1>Passing exams</h1>
-<table class="table table-bordered table-striped">
+<h1 *ngIf="!isAdmin()">Passing exams</h1>
+<table *ngIf="!isAdmin()" class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>Name</th><th>Date</th><th>Action</th>
