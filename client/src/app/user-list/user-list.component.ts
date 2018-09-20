@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { UserService } from '../main/user.service';
 import { User } from '../common.models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -12,7 +13,7 @@ export class UserListComponent implements OnInit {
   public students: User[];
   public teachers: User[];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.loadData();
   }
 
@@ -29,6 +30,10 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  edit = function (id) {
+    this.router.navigate(['/users/' + id]);
   }
 
 }

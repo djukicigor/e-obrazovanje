@@ -4,12 +4,13 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Index number</th><th>Full name</th><th>Citizen Id</th><th>Balance</th>
+				<th>Index number</th><th>Full name</th><th>Citizen Id</th><th>Balance</th><th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let student of students">
-        <td>{{student.indexNumber}}</td><td>{{student.firstName}} {{student.lastName}}</td><td>{{student.citizenID}}</td><td>{{student.balance}}</td>
+				<td>{{student.indexNumber}}</td><td>{{student.firstName}} {{student.lastName}}</td><td>{{student.citizenID}}</td><td>{{student.balance}}</td>
+				<td><button class="btn btn-warning" (click)="edit(student.username)">edit</button></td>
       </tr>
 		</tbody>
   </table>
@@ -17,12 +18,13 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>Full name</th><th>Citizen Id</th>
+				<th>Full name</th><th>Citizen Id</th><th>Action</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let teacher of teachers">
-        <td>{{teacher.firstName}} {{teacher.lastName}}</td><td>{{teacher.citizenID}}</td>
+				<td>{{teacher.firstName}} {{teacher.lastName}}</td><td>{{teacher.citizenID}}</td>
+				<td><button class="btn btn-warning" (click)="edit(teacher.username)">edit</button></td>
       </tr>
 		</tbody>
 	</table>
