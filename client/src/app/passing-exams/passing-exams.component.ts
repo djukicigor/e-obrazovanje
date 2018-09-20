@@ -46,6 +46,9 @@ export class PassingExamsComponent implements OnInit {
     exam.students.push(this.user);
     this.examService.applyExam(exam, this.user.id)
       .subscribe(() => {
+        let user = this.user;
+        user.balance -= 200;
+        this.money = user.balance;
         var index = this.passingExams.indexOf(exam);
         if (index > -1) {
           this.passingExams.splice(index, 1);

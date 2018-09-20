@@ -22,9 +22,15 @@ export class UserService {
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 
+  editUser(user: User): Observable<User> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.put(`${this.studentsPath}/${user.id}`, JSON.stringify(user), { headers })
+      .catch((error: any) => Observable.throw(error.message || 'Server error'));
+  }
+
   saveUser(user: User): Observable<User> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.put(`http://localhost:8080/api/teachers/${user.id}`, JSON.stringify(user), { headers })
+    return this.http.put(`${this.teachersPath}/${user.id}`, JSON.stringify(user), { headers })
     .catch((error: any) => Observable.throw(error.message || 'Server error'));
   }
 

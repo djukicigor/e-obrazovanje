@@ -65,7 +65,7 @@ public class StudentController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Student> update(@PathVariable Long id,
-			@RequestBody Student student, @RequestBody Transaction transaction) {
+			@RequestBody Student student) {
 		if (studentService.findOne(id) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
