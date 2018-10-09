@@ -59,7 +59,11 @@ export interface PassedExamInterface {
 
 interface AuthorityInterface {
 	id?: number;
-	authority: object;
+	authority: Auth;
+}
+
+interface Auth {
+	name: string;
 }
 
 export interface ExamInterface {
